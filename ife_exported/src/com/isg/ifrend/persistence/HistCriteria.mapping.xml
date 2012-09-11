@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.HistCriteria" table="hst_criteria">
+		<id name="trans_id" type="int">
+			<column name="HC_CR_TRANS_ID_PK" />
+			<generator class="increment" />
+		</id>
+		<property name="criteria_id" access="field" type="java.lang.String">
+			<column name="HC_CR_CRITERION_ID_FK" />
+		</property>
+		<property name="country_code" type="java.lang.String">
+			<column name="HC_CR_COUNTRY_CODE_FK" />
+		</property>
+		<property name="function_id" type="java.lang.String">
+			<column name="HC_CR_FUNCTION_ID_FK" />
+		</property>
+		<property name="user_field_id" type="int">
+			<column name="HC_CR_USERFIELD_ID_FK" />
+		</property>
+		<property name="priority_id" type="int">
+			<column name="HC_CR_PRIORITY_ID_FK" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="HC_CR_DESCRIPTION" />
+		</property>
+		<property name="pass_action_id" type="int">
+			<column name="HC_CR_PASS_ACTION_ID_FK" />
+		</property>
+		<property name="pass_messagetype_id" type="int">
+			<column name="HC_CR_PASS_MESSAGETYPE_ID" />
+		</property>
+		<property name="pass_lettercode_id" type="int">
+			<column name="HC_CR_PASS_LETTERCODE_ID_FK" />
+		</property>
+		<property name="pass_commenttype_id" type="int">
+			<column name="HC_CR_PASS_COMMENTTYPE_ID" />
+		</property>
+		<property name="pass_message" type="java.lang.String">
+			<column name="HC_CR_PASS_MESSAGE" />
+		</property>
+		<property name="pass_comment" type="java.lang.String">
+			<column name="HC_CR_PASS_COMMENT" />
+		</property>
+		<property name="fail_action_id" type="int">
+			<column name="HC_CR_FAIL_ACTION_ID_FK" />
+		</property>
+		<property name="fail_messagetype_id" type="int">
+			<column name="HC_CR_FAIL_MESSAGETYPE_ID" />
+		</property>
+		<property name="fail_lettercode_id" type="int">
+			<column name="HC_CR_FAIL_LETTERCODE_ID_FK" />
+		</property>
+		<property name="fail_commenttype_id" type="int">
+			<column name="HC_CR_FAIL_COMMENTTYPE_ID" />
+		</property>
+		<property name="fail_message" type="java.lang.String">
+			<column name="HC_CR_FAIL_MESSAGE" />
+		</property>
+		<property name="fail_comment" type="java.lang.String">
+			<column name="HC_CR_FAIL_COMMENT" />
+		</property>
+		<!-- Common - START -->
+		<property name="statusID" column="HC_CR_STATUS_ID" type="integer" />
+		<property name="actionID" column="HC_CR_ACTION_ID" type="integer" />
+		<property name="creatorUserID" type="java.lang.String">
+			<column name="HC_CR_CREATOR_USERID_FK" />
+		</property>
+		<property name="dateCreated" type="java.util.Date">
+			<column name="HC_CR_DATE_CREATED" />
+		</property>
+		<property name="approverUserID" type="java.lang.String">
+			<column name="HC_CR_APPROVER_USERID_FK" />
+		</property>
+		<property name="dateApproved" type="java.util.Date">
+			<column name="HC_CR_DATE_APPROVED" />
+		</property>
+		<property name="lastModifierUserID" type="java.lang.String">
+			<column name="HC_CR_LASTMOD_USERID_FK" />
+		</property>
+		<property name="dateLastModified" type="java.util.Date">
+			<column name="HC_CR_LASTDATE_MODIFIED" />
+		</property>
+		<!-- Common - END -->
+		<set name="histEnhancedCriteriaSet" access="field" inverse="true"
+			cascade="all" lazy="true">
+			<key column="HC_CR_CRITERION_ID_FK" not-null="true" />
+			<one-to-many class="com.isg.ifrend.model.bean.HistEnhancedCriteria" />
+		</set>
+
+	</class>
+</hibernate-mapping>

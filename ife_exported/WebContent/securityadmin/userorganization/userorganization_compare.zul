@@ -1,0 +1,310 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userOrganizationComparePage" self="@{define(left)}"
+	title="USER ORGANIZATION - COMPARE" border="normal" width="100%"
+	height="100%"
+	apply="com.isg.ifrend.view.control.UserOrganizationCompareVM">
+	<groupbox closable="false" mold="3d" width="100%" height="100%">
+		<label id="lblinfo" />
+		<div>
+			<hbox pack="right" width="100%" spacing="2">
+				<button id="btn_back" label="${labels.BACK}"
+					image="/images/back.png" />
+			</hbox>
+		</div>
+		<separator />
+		<panel border="normal" width="100%" height="360px">
+			<panelchildren style="overflow:auto">
+				<hbox spacing="0" width="100%" height="100%">
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="${labels.TEMPORARY_RECORD}"
+											width="20%" />
+										<column label="" />
+									</columns>
+									<rows>
+										<row>
+											<label
+												value="${labels.ORGANIZATION_ID}" />
+											<label id="lbl_temp_org_id" />
+										</row>
+										<row>
+											<label
+												value="${labels.ORGANIZATION_DESCRIPTION}" />
+											<label
+												id="lbl_temp_org_desc" />
+										</row>
+										<row>
+											<label
+												value="${labels.DISPOSE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_temp_dispose_adj_lim" />
+										</row>
+										<row>
+											<label
+												value="${labels.C1_CREDIT_LIMIT}" />
+											<label
+												id="lbl_temp_cr_lim_c1" />
+										</row>
+										<row  >
+											<label
+												value="${labels.C2_CREDIT_LIMIT}" />
+											<label
+												id="lbl_temp_cr_lim_c2" />
+										</row>
+										<row  >
+											<label
+												value="${labels.CHARGE_BACK_LIMIT}" />
+											<label
+												id="lbl_temp_charge_back_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.RETRIEVAL_AMOUNT}" />
+											<label
+												id="lbl_temp_retrieval_amt" />
+										</row>
+										<row  >
+											<label
+												value="${labels.FRAUD_AMOUNT}" />
+											<label
+												id="lbl_temp_fraud_amt" />
+										</row>
+										<row  >
+											<label value="${labels.FEE_AMOUNT}" />
+											<label
+												id="lbl_temp_fee_amt" />
+										</row>
+										<row  >
+											<label
+												value="${labels.PERMANENT_CREDIT_LIMIT}" />
+											<label
+												id="lbl_temp_perm_cr_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.TEMPORARY_CREDIT_LIMIT}" />
+											<label
+												id="lbl_temp_temp_cr_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.FEE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_temp_fee_adj_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.LATE_CHARGE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_temp_late_charge_adj_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.BALANCE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_temp_bal_adj_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.TRANSACTION_LIMIT}" />
+											<label
+												id="lbl_temp_txn_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.TRANSACTION_CODE}" />
+											<label
+												id="lbl_temp_txn_code" />
+										</row>
+										<!-- <row  >
+											<label value="${labels.CREATED_BY}" />
+											<label
+												id="lbl_temp_created_by" />
+										</row>
+										<row  >
+											<label
+												value="${labels.DATE_CREATED}" />
+											<label
+												id="lbl_temp_date_created" />
+										</row>
+										<row  >
+											<label
+												value="${labels.LAST_MODIFIED_BY}" />
+											<label
+												id="lbl_temp_last_modified" />
+										</row>
+										<row  >
+											<label
+												value="${labels.DATE_LAST_MODIFIED}" />
+											<label
+												id="lbl_temp_date_last_mod" />
+										</row>
+										<row  >
+											<label value="${labels.APPROVED_BY}" />
+											<label
+												id="lbl_temp_approved_by" />
+										</row>
+										<row  >
+											<label
+												value="${labels.DATE_APPROVED}" />
+											<label
+												id="lbl_temp_date_approved" />
+										</row> -->
+									</rows>
+								</grid>
+							</row>
+						</rows>
+					</grid>
+					<splitter id="s1" />
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="${labels.MASTER_RECORD}"
+											width="20%" />
+										<column label="" />
+									</columns>
+									<rows>
+										<row>
+											<label
+												value="${labels.ORGANIZATION_ID}" />
+											<label id="lbl_mst_org_id" />
+										</row>
+										<row>
+											<label
+												value="${labels.ORGANIZATION_DESCRIPTION}" />
+											<label
+												id="lbl_mst_org_desc" />
+										</row>
+										<row>
+											<label
+												value="${labels.DISPOSE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_mst_dispose_adj_lim" />
+										</row>
+										<row>
+											<label
+												value="${labels.C1_CREDIT_LIMIT}" />
+											<label
+												id="lbl_mst_cr_lim_c1" />
+										</row>
+										<row  >
+											<label
+												value="${labels.C2_CREDIT_LIMIT}" />
+											<label
+												id="lbl_mst_cr_lim_c2" />
+										</row>
+										<row  >
+											<label
+												value="${labels.CHARGE_BACK_LIMIT}" />
+											<label
+												id="lbl_mst_charge_back_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.RETRIEVAL_AMOUNT}" />
+											<label
+												id="lbl_mst_retrieval_amt" />
+										</row>
+										<row  >
+											<label
+												value="${labels.FRAUD_AMOUNT}" />
+											<label
+												id="lbl_mst_fraud_amt" />
+										</row>
+										<row  >
+											<label value="${labels.FEE_AMOUNT}" />
+											<label id="lbl_mst_fee_amt" />
+										</row>
+										<row  >
+											<label
+												value="${labels.PERMANENT_CREDIT_LIMIT}" />
+											<label
+												id="lbl_mst_perm_cr_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.TEMPORARY_CREDIT_LIMIT}" />
+											<label
+												id="lbl_mst_temp_cr_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.FEE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_mst_fee_adj_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.LATE_CHARGE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_mst_late_charge_adj_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.BALANCE_ADJUSTMENT_LIMIT}" />
+											<label
+												id="lbl_mst_bal_adj_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.TRANSACTION_LIMIT}" />
+											<label id="lbl_mst_txn_lim" />
+										</row>
+										<row  >
+											<label
+												value="${labels.TRANSACTION_CODE}" />
+											<label
+												id="lbl_mst_txn_code" />
+										</row>
+										<!-- <row  >
+											<label value="Created by:" />
+											<label
+												id="lbl_mst_created_by" />
+										</row>
+										<row  >
+											<label
+												value="Date Created:" />
+											<label
+												id="lbl_mst_date_created" />
+										</row>
+										<row  >
+											<label
+												value="Last Modified by:" />
+											<label
+												id="lbl_mst_last_modified" />
+										</row>
+										<row  >
+											<label
+												value="Date Last Modified:" />
+											<label
+												id="lbl_mst_date_last_mod" />
+										</row>
+										<row  >
+											<label value="Approved by:" />
+											<label
+												id="lbl_mst_approved_by" />
+										</row>
+										<row  >
+											<label
+												value="Date Approved:" />
+											<label
+												id="lbl_mst_date_approved" />
+										</row> -->
+									</rows>
+								</grid>
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+			</panelchildren>
+		</panel>
+	</groupbox>
+</window>

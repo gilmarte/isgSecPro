@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.CodeType" table="MST_CODETYPES">
+		<id name="codeTypeID" type="string">
+			<column name="CT_ID_PK" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="desc"
+			type="java.lang.String">
+			<column name="CT_DESC" />
+		</property>
+		<property generated="never" lazy="false" name="statusID"
+			type="int">
+			<column name="CT_STATUS_ID" />
+		</property>
+		<property generated="never" lazy="false" name="actionID"
+			type="int">
+			<column name="CT_ACTION_ID" />
+		</property>
+		<property generated="never" lazy="false" name="creatorUserID"
+			type="java.lang.String">
+			<column name="CT_CREATOR_USER_ID_FK" />
+		</property>
+		<property generated="never" lazy="false" name="dateCreated"
+			type="java.util.Date">
+			<column name="CT_DATE_CREATED" />
+		</property>
+		<property generated="never" lazy="false" name="lastModifierUserID"
+			type="java.lang.String">
+			<column name="CT_LASTMODIFIER_USER_ID_FK" />
+		</property>
+		<property generated="never" lazy="false" name="dateLastModified"
+			type="java.util.Date">
+			<column name="CT_DATE_LAST_MODIFIED" />
+		</property>
+		<property generated="never" lazy="false" name="approverUserID"
+			type="java.lang.String">
+			<column name="CT_APPROVER_USER_ID_FK" />
+		</property>
+		<property generated="never" lazy="false" name="dateApproved"
+			type="java.util.Date">
+			<column name="CT_DATE_APPROVED" />
+		</property>
+		<set cascade="all-delete-orphan" inverse="true" lazy="true" name="codeSet"
+			sort="unsorted" table="MST_CODES">
+			<key>
+				<column name="CO_CODETYPE_ID_FK" not-null="true" />
+			</key>
+			<one-to-many class="com.isg.ifrend.model.bean.Code" />
+		</set>
+	</class>
+</hibernate-mapping>

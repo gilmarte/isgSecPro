@@ -1,0 +1,5 @@
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/samain.zul"?>
+<zk>
+</zk>

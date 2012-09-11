@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="Action" table="ref_actions">
+		<id name="action_id" column="ac_action_id_pk" type="integer">
+			<generator class="increment" />
+		</id>
+
+		<property name="action_desc" column="ac_action_desc" type="string" />
+		<property name="action_category" column="ac_action_category"
+			type="integer" />
+	</class>
+</hibernate-mapping>

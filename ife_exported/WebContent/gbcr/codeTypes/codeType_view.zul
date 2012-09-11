@@ -1,0 +1,154 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?page title="Global Criteria - Code Type" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<window
+		id="globalWin"
+		title="Code Type - VIEW"
+		contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.CodeTypeViewComposer"
+		self="@{define(left)}">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="updateTopBtn"
+					label="${labels.UPDATE}"
+					image="../../images/update.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					visible="false"
+					id="deleteTopBtn"
+					label="${labels.DELETE}"
+					image="../../images/delete.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="approveTopBtn"
+					label="${labels.APPROVE}"
+					image="../../images/approve.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="rejectTopBtn"
+					label="${labels.REJECT}"
+					image="../../images/reject.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="editRequestTopBtn"
+					label="${labels.EDIT}"
+					image="../../images/update.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="cancelRequestTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="okTopBtn"
+					label="${labels.OK}"
+					image="../../images/ok.png"
+					width="96px"
+					sclass="ui-button-med" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<groupbox mold="3d">
+			<label value="${labels.CODE_TYPE_ID} : " />
+			<label id="idLbl" />
+			<separator />
+			<label value="${labels.CODE_TYPE_DESC} : " />
+			<label id="codeTypeDescLbl" />
+			<separator />
+			<listbox
+				id="codeListbox"
+				height="200px">
+				<listhead>
+					<listheader
+						label="${labels.CODE_VALUE}"
+						width="252px" />
+					<listheader label="${labels.CODE_DESC}" />
+				</listhead>
+			</listbox>
+		</groupbox>
+		<separator />
+		<grid>
+			<columns>
+				<column width="11%" />
+				<column width="15%" />
+				<column width="11%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="${labels.STATUS} : " />
+					</cell>
+					<cell>
+						<label id="statusLbl" />
+					</cell>
+					<cell align="right">
+						<label value="${labels.ACTION} : " />
+					</cell>
+					<cell>
+						<label id="actionLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.CREATED_BY} : " />
+					</cell>
+					<cell>
+						<label id="creatorLbl" />
+					</cell>
+					<cell align="right">
+						<label value="${labels.DATE_CREATED} : " />
+					</cell>
+					<cell>
+						<label id="dateCreatedLbl" />
+					</cell>
+				</row>
+				<row id="modifierRow">
+					<cell align="right">
+						<label value="${labels.LAST_MODIFIED_BY} : " />
+					</cell>
+					<cell>
+						<label id="modifierLbl" />
+					</cell>
+					<cell align="right">
+						<label value="${labels.DATE_LAST_MODIFIED} : " />
+					</cell>
+					<cell>
+						<label id="dateModifiedLbl" />
+					</cell>
+				</row>
+				<row id="approverRow">
+					<cell align="right">
+						<label value="${labels.APPROVED_BY} : " />
+					</cell>
+					<cell>
+						<label id="approverLbl" />
+					</cell>
+					<cell align="right">
+						<label value="${labels.DATE_APPROVED} : " />
+					</cell>
+					<cell>
+						<label id="dateApprovedLbl" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

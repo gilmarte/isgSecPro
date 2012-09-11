@@ -1,0 +1,328 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<window id="userprofile_authorize_edit" self="@{define(left)}"
+		title="USER PROFILE - AUTHORIZE" border="normal" width="100%" height="100%"
+		apply="com.isg.ifrend.view.control.UserProfileAuthorizeEditVM">
+
+		<groupbox mold="3d" closable="false">
+			<div id="">
+				<hbox pack="right" width="100%">
+					<cell width="50%" align="left">
+						<image id="img_info" />
+						<label id="lb_info" />
+					</cell>
+					<cell width="50%" align="right">
+						<button id="btn_approve_top"
+							label="${labels.APPROVE}" width="80px" visible="false"
+							image="../../images/approve.png" />
+						<button id="btn_update_top"
+							label="${labels.UPDATE}" width="80px" visible="false"
+							image="../../images/update.png" />
+						<button id="btn_submit_top"
+							label="${labels.SUBMIT}" width="80px" visible="false"
+							image="../../images/submit.png" />
+						<space />
+						<button id="btn_reject_top"
+							label="${labels.REJECT}" width="80px" visible="false"
+							image="../../images/reject.png" />
+						<button id="btn_cancel_top"
+							label="${labels.CANCEL}" width="80px" visible="false"
+							image="../../images/cancel.png" />
+						<button id="btn_reset_top"
+							label="${labels.RESET}" width="80px" visible="false"
+							image="../../images/reset.png" />
+						<space />
+						<button id="btn_back_top" label="${labels.BACK}"
+							width="80px" image="../../images/back.png" />
+					</cell>
+				</hbox>
+			</div>
+			<separator />
+			<div>
+				<groupbox closable="false">
+					<div>
+						<grid sizedByContent="false">
+							<rows>
+								<row>
+									<cell align="right">
+										<label value="${labels.USER_ID}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<textbox id="tbx_user_id"
+											maxlength="8" width="180px" readonly="true" />
+									</cell>
+									<cell align="right">
+										<label value="${labels.CURRENT_STATUS}" />
+									</cell>
+									<cell>
+										<textbox id="tbx_current_status" width="180px" readonly="true" />
+									</cell>
+								</row>
+								<row>
+									<cell align="right">
+										<label value="${labels.USER_NAME}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<textbox id="tbx_username"
+											maxlength="25" width="180px" readonly="true" />
+									</cell>
+									<cell align="right">
+										<label value="${labels.EMPLOYEE_ID}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<textbox id="tbx_emp_id"
+											maxlength="8" width="180px" readonly="true" />
+									</cell>
+								</row>
+								<row>
+									<cell align="right">
+										<label value="${labels.EMAIL}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<textbox id="tbx_email"
+											maxlength="60" width="180px" readonly="true" />
+									</cell>
+									<cell align="right">
+										<label
+											value="${labels.BUSINESS_ENTITY}">
+										</label>
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<combobox
+											id="cbb_business_entity" width="180px"
+											model="@{userprofile_authorize_editControl.busEntityList}"
+											readonly="true" buttonVisible="false" >
+											<comboitem
+												self="@{each=bus_ent}" label="@{bus_ent.bus_ent_desc}"
+												value="@{bus_ent.bus_ent_code}" />
+										</combobox>
+									</cell>
+								</row>
+								<row>
+									<cell align="right">
+										<label
+											value="${labels.MAX_ACCT_BAL_AND_STATUS}">
+										</label>
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<combobox id="cbb_max_acctbal" readonly="true"
+											width="180px" buttonVisible="false" >
+											<comboitem
+												label="@{userprofile_authorize_editControl.labelAllowed}"
+												value="@{userprofile_authorize_editControl.codeAllowed}" />
+											<comboitem
+												label="@{userprofile_authorize_editControl.labelNotAllowed}"
+												value="@{userprofile_authorize_editControl.codeNotAllowed}" />
+										</combobox>
+									</cell>
+									<cell align="right">
+										<label
+											value="${labels.VIP_ACCT_ALLOWED}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<combobox id="cbb_vip_acct" readonly="true"
+											width="180px" buttonVisible="false" >
+											<comboitem
+												label="@{userprofile_authorize_editControl.labelAllowed}"
+												value="@{userprofile_authorize_editControl.codeAllowed}" />
+											<comboitem
+												label="@{userprofile_authorize_editControl.labelNotAllowed}"
+												value="@{userprofile_authorize_editControl.codeNotAllowed}" />
+										</combobox>
+									</cell>
+								</row>
+								<row>
+									<cell align="right">
+										<label value="${labels.SUPERVISOR_ID}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<textbox id="tbx_supervisor_id"
+											maxlength="8" width="180px" readonly="true" />
+									</cell>
+									<cell align="right">
+										<label
+											value="${labels.STAFF_ACCT_ALLOWED}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<combobox id="cbb_staff_acct" readonly="true"
+											width="180px" buttonVisible="false" >
+											<comboitem
+												label="@{userprofile_authorize_editControl.labelAllowed}"
+												value="@{userprofile_authorize_editControl.codeAllowed}" />
+											<comboitem
+												label="@{userprofile_authorize_editControl.labelNotAllowed}"
+												value="@{userprofile_authorize_editControl.codeNotAllowed}" />
+										</combobox>
+									</cell>
+								</row>
+								<row>
+									<cell align="right">
+										<label value="${labels.CUSTOMER_ID}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<textbox id="tbx_customer_id"
+											maxlength="8" width="180px" readonly="true" />
+									</cell>
+									<cell align="right">
+										<label
+											value="${labels.LANGUAGE_PREFERENCE}" />
+										<label value="*" sclass="required-field" />
+									</cell>
+									<cell>
+										<combobox id="cbb_language_pref"
+											width="180px" model="@{userprofile_authorize_editControl.languageList}"
+											readonly="true" buttonVisible="false" >
+											<comboitem
+												self="@{each=lang}" label="@{lang.lcLanguageCodeDesc}"
+												value="@{lang.lcLanguageCodeID}" />
+										</combobox>
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</div>
+				</groupbox>
+			</div>
+			<separator />
+			<hbox width="100%">
+				<cell width="50%">
+					<groupbox mold="3d" closable="true">
+						<caption label="${labels.USER_GROUP_TITLE}" />
+						<div id="">
+							<grid>
+								<rows>
+									<row>
+										<cell align="center">
+											<label
+												value="${labels.USER_GROUP}" />
+											<label value="*"
+												sclass="required-field" />
+											<space />
+											<combobox
+												id="cbb_user_group"
+												model="@{userprofile_authorize_editControl.userGroupList}"
+												readonly="true" buttonVisible="false">
+												<comboitem
+													self="@{each=grp}" label="@{grp.group_id}" value="@{grp}" />
+											</combobox>
+											<space />
+											<button
+												id="btn_add_user_grp" width="80px" label="${labels.ADD}"
+												disabled="true" image="../../images/add.png" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+							<separator />
+							<grid>
+								<rows>
+									<row align="center">
+										<listbox id="lb_user_grp"
+											width="650px" height="200px" checkmark="false"
+											multiple="true">
+											<listhead>
+												<listheader
+													label="${labels.USER_GROUP}" width="650px" align="left" />
+											</listhead>
+										</listbox>
+									</row>
+									<row align="center">
+										<button id="btn_remove_user_grp"
+											width="80px" label="${labels.REMOVE}" disabled="true"
+											image="../../images/remove.png" />
+									</row>
+								</rows>
+							</grid>
+						</div>
+					</groupbox>
+				</cell>
+				<separator />
+				<cell>
+					<groupbox mold="3d" closable="true">
+						<caption label="${labels.USER_ORG_TITLE}" />
+						<div id="">
+							<grid>
+								<rows>
+									<row>
+										<cell align="center">
+											<label
+												value="${labels.USER_ORG}" />
+											<space />
+											<combobox id="cbb_user_org"
+												model="@{userprofile_authorize_editControl.userOrgList}"
+												readonly="true" buttonVisible="false">
+												<comboitem
+													self="@{each=org}" label="@{org.orgID}" value="@{org}" />
+											</combobox>
+											<!-- <label value="*"
+												sclass="required-field" /> -->
+											<space />
+											<button
+												id="btn_add_user_org" width="80px" label="${labels.ADD}"
+												disabled="true" image="../../images/add.png" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+							<separator />
+						</div>
+						<separator />
+						<grid>
+							<rows>
+								<row align="center">
+									<listbox id="lb_user_org"
+										width="650px" height="200px" checkmark="false"
+										multiple="true">
+										<!-- model="@{userprofile_authorize_editControl.assignedUserOrgList}" > -->
+										<listhead>
+											<listheader
+												label="${labels.USER_ORG}" width="650px" align="left" />
+										</listhead>
+									</listbox>
+								</row>
+								<row align="center">
+									<button id="btn_remove_user_org"
+										width="80px" label="${labels.REMOVE}" disabled="true"
+										image="../../images/remove.png" />
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+				</cell>
+			</hbox>
+			<separator />
+			<div id="divsubmit_foot">
+				<hbox pack="right" width="100%">
+					<button id="btn_approve_foot" label="${labels.APPROVE}" width="80px" visible="false"
+								image="../../images/approve.png" />
+					<button id="btn_reject_foot" label="${labels.REJECT}" width="80px" visible="false"
+								image="../../images/reject.png" />
+					<button id="btn_update_foot" label="${labels.UPDATE}" width="80px" visible="false"
+								image="../../images/update.png" />
+					<button id="btn_submit_foot" label="${labels.SUBMIT}" width="80px" visible="false"
+								image="../../images/submit.png" />
+					<button id="btn_cancel_foot" label="${labels.CANCEL}" width="80px" visible="false"
+								image="../../images/cancel.png" />
+					<button id="btn_reset_foot" label="${labels.RESET}" width="80px" visible="false"
+								image="../../images/reset.png" />
+					<button id="btn_back_foot" label="${labels.BACK}" width="80px"
+								image="../../images/back.png" />
+				</hbox>
+			</div>
+		</groupbox>
+	</window>
+</zk>

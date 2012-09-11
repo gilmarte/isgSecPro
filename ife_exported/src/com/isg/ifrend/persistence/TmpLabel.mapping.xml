@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="TmpLabel" table="TMP_LABELS">
+		<id column="TMP_LA_ID_PK" name="labelID" type="string">
+			<generator class="assigned" />
+		</id>
+		<property column="TMP_LA_LANGUAGECODE_FK" generated="never"
+			lazy="false" name="labelLanguageCode" type="string" />
+		<property column="TMP_LA_LABEL_NAME" generated="never" lazy="false"
+			name="labelName" type="string" />
+		<property column="TMP_LA_NATIVE_STRING" generated="never"
+			lazy="false" name="labelNativeString" type="string" />
+		<property column="TMP_LA_STATUS_ID" generated="never" lazy="false"
+			name="statusID" type="integer" />
+		<property column="TMP_LA_ACTION_ID" generated="never" lazy="false"
+			name="actionID" type="integer" />
+		<property column="TMP_LA_CREATOR_USER_ID_FK" generated="never"
+			lazy="false" name="creatorUserID" type="string" />
+		<property column="TMP_LA_DATE_CREATED" generated="never"
+			lazy="false" name="dateCreated" type="java.sql.Timestamp" />
+		<property column="TMP_LA_LASTMODIFIER_USER_ID_FK" generated="never"
+			lazy="false" name="lastModifierUserID" type="string" />
+		<property column="TMP_LA_DATE_LAST_MODIFIED" generated="never"
+			lazy="false" name="dateLastModified" type="java.sql.Timestamp" />
+		<property column="TMP_LA_APPROVER_USER_ID_FK" generated="never"
+			lazy="false" name="approverUserID" type="string" />
+		<property column="TMP_LA_DATE_APPROVED" generated="never"
+			lazy="false" name="dateApproved" type="java.sql.Timestamp" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,198 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="criteriaHistoryComparePage" self="@{define(left)}"
+	title="HISTORY CRITERIA - VIEW" border="normal" width="100%" height="100%"
+apply="com.isg.ifrend.view.control.CriteriaHistoryComparePageViewCtrl">
+<!--  Block Field Start -->
+	<groupbox closable="false" mold="3d" width="100%" height="400px">
+		<label id="lblinfo"/>
+		<div>
+			<hbox pack="right" width="100%" spacing="2">
+				<button id="btn_back" label="Back" image="/images/back.png"/>
+			</hbox>
+		</div>
+		<panel border="normal" width="100%" height="360px">
+			<panelchildren>
+				<hbox spacing="0" width="100%" height="100%">
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="History Record"
+											width="20%" />
+										<column label=""/>
+									</columns>
+									<rows>
+										<row>
+											<label value="Country Code :"/>
+											<label id="history_country_code"/>
+										</row>
+										<row>
+											<label value="Function Type :"/>
+											<label id="history_function_type"/>
+										</row>
+										<row>
+											<label value="Function Code:"/>
+											<label id="history_function_code"/>
+										</row>
+										<row>
+											<label value="Userfield:"/>
+											<label id="history_userfield"/>
+										</row>
+										<row>
+											<label value="Priority:"/>
+											<label id="history_priority"/>
+										</row>
+										<row>
+											<label value="Description:"/>
+											<label id="history_description"/>
+										</row>
+										<row>
+											<label value="Pass Action:"/>
+											<label id="history_pass_action"/>
+										</row>
+										<row>
+											<label value="Fail Action:"/>
+											<label id="history_fail_action"/>
+										</row>
+										<row>
+											<label value="Message Type:"/>
+											<label id="history_pass_message_type"/>
+										</row>
+										<row>
+											<label value="Message Type:"/>
+											<label id="history_fail_message_type"/>
+										</row>
+										<row>
+											<label value="Message :"/>
+											<label id="history_pass_message"/>
+										</row>
+										<row>
+											<label value="Message :"/>
+											<label id="history_fail_message"/>
+										</row>
+										<row>
+											<label value="Lettercode :"/>
+											<label id="history_pass_lettercode"/>
+										</row>
+										<row>
+											<label value="Lettercode :"/>
+											<label id="history_fail_lettercode"/>
+										</row>
+										<row>
+											<label value="Comment Type :"/>
+											<label id="history_pass_commenttype"/>
+										</row>
+										<row>
+											<label value="Comment Type :"/>
+											<label id="history_fail_commenttype"/>
+										</row>
+										<row>
+											<label value="Comment :"/>
+											<label id="history_pass_comment"/>
+										</row>
+										<row>
+											<label value="Comment :"/>
+											<label id="history_fail_comment"/>
+										</row>
+									</rows>
+								</grid>
+							</row>
+						</rows>
+					</grid>
+					<splitter id="s1"/>
+						<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="Master Record"
+											width="20%" />
+										<column label=""/>
+									</columns>
+									<rows>
+										<row>
+											<label value="Country Code :"/>
+											<label id="mst_country_code"/>
+										</row>
+										<row>
+											<label value="Function Type :"/>
+											<label id="mst_function_type"/>
+										</row>
+										<row>
+											<label value="Function Code:"/>
+											<label id="mst_function_code"/>
+										</row>
+										<row>
+											<label value="Userfield:"/>
+											<label id="mst_userfield"/>
+										</row>
+										<row>
+											<label value="Priority:"/>
+											<label id="mst_priority"/>
+										</row>
+										<row>
+											<label value="Description:"/>
+											<label id="mst_description"/>
+										</row>
+										<row>
+											<label value="Pass Action:"/>
+											<label id="mst_pass_action"/>
+										</row>
+										<row>
+											<label value="Fail Action:"/>
+											<label id="mst_fail_action"/>
+										</row>
+										<row>
+											<label value="Message Type:"/>
+											<label id="mst_pass_message_type"/>
+										</row>
+										<row>
+											<label value="Message Type:"/>
+											<label id="mst_fail_message_type"/>
+										</row>
+										<row>
+											<label value="Message :"/>
+											<label id="mst_pass_message"/>
+										</row>
+										<row>
+											<label value="Message :"/>
+											<label id="mst_fail_message"/>
+										</row>
+										<row>
+											<label value="Lettercode :"/>
+											<label id="mst_pass_lettercode"/>
+										</row>
+										<row>
+											<label value="Lettercode :"/>
+											<label id="mst_fail_lettercode"/>
+										</row>
+										<row>
+											<label value="Comment Type :"/>
+											<label id="mst_pass_commenttype"/>
+										</row>
+										<row>
+											<label value="Comment Type :"/>
+											<label id="mst_fail_commenttype"/>
+										</row>
+										<row>
+											<label value="Comment :"/>
+											<label id="mst_pass_comment"/>
+										</row>
+										<row>
+											<label value="Comment :"/>
+											<label id="mst_fail_comment"/>
+										</row>
+									</rows>
+								</grid>
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+			</panelchildren>
+		</panel>
+	</groupbox>
+</window>

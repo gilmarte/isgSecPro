@@ -1,0 +1,18 @@
+<zk>
+	<style src="/style/style.css" />
+	<div apply="com.isg.ifrend.view.control.RedirectVM">
+		<borderlayout height="100%" sclass="main-layout">
+			<north size="13%" border="0">
+				<include src="/salayout/saheader.zul" />
+			</north>
+
+			<!-- To be handled by Spring Webflow -->
+			<center>
+				
+			</center>
+			<south border="none" class="footer" size="5%">
+				<include src="/layout/footer.zul" />
+			</south>
+		</borderlayout>
+	</div>
+</zk>

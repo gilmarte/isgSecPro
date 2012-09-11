@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="Function" table="ref_functions">
+		<id name="function_code" column="fu_function_code" type="string">
+			<generator class="assigned" />
+		</id>
+
+		<property name="function_desc" column="fu_function_desc"
+			type="string" />
+	</class>
+</hibernate-mapping>

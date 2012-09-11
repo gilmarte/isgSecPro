@@ -1,0 +1,184 @@
+<?page title="Global Criteria - MLI" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<window
+		id="globalWin"
+		self="@{define(left)}"
+		title="MLI - VIEW"
+		contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.MliViewComposer">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="updateTopBtn"
+					label="${labels.UPDATE}"
+					image="../../images/update.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="deleteTopBtn"
+					label="${labels.DELETE}"
+					image="../../images/delete.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="approveTopBtn"
+					label="${labels.APPROVE}"
+					image="../../images/approve.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="rejectTopBtn"
+					label="${labels.REJECT}"
+					sclass="ui-button-med"
+					image="../../images/reject.png"
+					width="96px" />
+				<button
+					id="editRequestTopBtn"
+					label="${labels.EDIT}"
+					image="../../images/update.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="cancelRequestTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="okTopBtn"
+					label="${labels.OK}"
+					image="../../images/ok.png"
+					sclass="ui-button-med"
+					width="96px" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<grid>
+			<columns>
+				<column width="10%" />
+				<column width="30%" />
+				<column width="10%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="${labels.MLI_ID} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="idLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.FUNCTION_TYPE} :" />
+					</cell>
+					<label id="functionTypeLbl" />
+					<cell align="right">
+						<label value="${labels.FUNCTION_ID} :" />
+					</cell>
+					<label id="functionIdLbl" />
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.USER_FIELD} :" />
+					</cell>
+					<label id="userFieldLbl" />
+					<cell align="right">
+						<label value="${labels.RESPONSE_CODE} :" />
+					</cell>
+					<label id="responseCodeLbl" />
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.DESCRIPTION} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="descLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.MESSAGE_TYPE} :" />
+					</cell>
+					<label id="messageTypeLbl" />
+					<cell align="right">
+						<label value="${labels.MESSAGE} : " />
+					</cell>
+					<label id="messageFldLbl" />
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.COMMENT_TYPE} :" />
+					</cell>
+					<label id="commentTypeLbl" />
+					<cell align="right">
+						<label value="${labels.COMMENT} :" />
+					</cell>
+					<label id="commentLbl" />
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<grid>
+			<columns>
+				<column width="10%" />
+				<column width="30%" />
+				<column width="10%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="${labels.STATUS} : " />
+					</cell>
+					<label id="statusLbl" />
+					<cell align="right">
+						<label value="${labels.ACTION} : " />
+					</cell>
+					<label id="actionLbl" />
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.CREATED_BY} : " />
+					</cell>
+					<label id="creatorLbl" />
+					<cell align="right">
+						<label value="${labels.DATE_CREATED} : " />
+					</cell>
+					<label id="dateCreatedLbl" />
+				</row>
+				<row id="approverRow">
+					<cell align="right">
+						<label value="${labels.APPROVED_BY} : " />
+					</cell>
+					<label id="approverLbl" />
+					<cell align="right">
+						<label value="${labels.DATE_APPROVED} : " />
+					</cell>
+					<label id="dateApprovedLbl" />
+				</row>
+				<row id="modifierRow">
+					<cell align="right">
+						<label value="${labels.LAST_MODIFIED_BY} : " />
+					</cell>
+					<label id="modifierLbl" />
+					<cell align="right">
+						<label value="${labels.DATE_LAST_MODIFIED} : " />
+					</cell>
+					<label id="dateModifiedLbl" />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

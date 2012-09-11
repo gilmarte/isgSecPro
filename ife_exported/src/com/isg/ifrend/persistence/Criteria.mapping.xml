@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.Criteria" table="mst_criteria">
+		<id name="criteria_id" type="java.lang.String">
+			<column name="cr_criterion_id_pk" />
+			<generator class="assigned" />
+		</id>
+
+		<property name="country_code" type="java.lang.String">
+			<column name="cr_country_code_fk" />
+		</property>
+		<property name="function_id" type="java.lang.String">
+			<column name="cr_function_id_fk" />
+		</property>
+		<property name="user_field_id" type="int">
+			<column name="cr_userfield_id_fk" />
+		</property>
+		<property name="priority_id" type="int">
+			<column name="cr_priority_id_fk" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="cr_description" />
+		</property>
+		<property name="pass_action_id" type="int">
+			<column name="cr_pass_action_id_fk" />
+		</property>
+		<property name="pass_messagetype_id" type="int">
+			<column name="cr_pass_messagetype_id" />
+		</property>
+		<property name="pass_lettercode_id" type="int">
+			<column name="cr_pass_lettercode_id_fk" />
+		</property>
+		<property name="pass_commenttype_id" type="int">
+			<column name="cr_pass_commenttype_id" />
+		</property>
+		<property name="pass_message" type="java.lang.String">
+			<column name="cr_pass_message" />
+		</property>
+		<property name="pass_comment" type="java.lang.String">
+			<column name="cr_pass_comment" />
+		</property>
+		<property name="fail_action_id" type="int">
+			<column name="cr_fail_action_id_fk" />
+		</property>
+		<property name="fail_messagetype_id" type="int">
+			<column name="cr_fail_messagetype_id" />
+		</property>
+		<property name="fail_lettercode_id" type="int">
+			<column name="cr_fail_lettercode_id_fk" />
+		</property>
+		<property name="fail_commenttype_id" type="int">
+			<column name="cr_fail_commenttype_id" />
+		</property>
+		<property name="fail_message" type="java.lang.String">
+			<column name="cr_fail_message" />
+		</property>
+		<property name="fail_comment" type="java.lang.String">
+			<column name="cr_fail_comment" />
+		</property>
+		<!-- Common - START -->
+		<property name="statusID" column="CR_STATUS_ID" type="integer" />
+		<property name="actionID" column="CR_ACTION_ID" type="integer" />
+		<property name="creatorUserID" type="java.lang.String">
+			<column name="cr_creator_userid_fk" />
+		</property>
+		<property name="dateCreated" type="java.util.Date">
+			<column name="cr_date_created" />
+		</property>
+		<property name="approverUserID" type="java.lang.String">
+			<column name="cr_approver_userid_fk" />
+		</property>
+		<property name="dateApproved" type="java.util.Date">
+			<column name="cr_date_approved" />
+		</property>
+		<property name="lastModifierUserID" type="java.lang.String">
+			<column name="cr_lastmod_userid_fk" />
+		</property>
+		<property name="dateLastModified" type="java.util.Date">
+			<column name="cr_lastdate_modified" />
+		</property>
+		<!-- Common - END -->
+		<set name="enhancedCriterionSet" access="field" inverse="true"
+			cascade="all-delete-orphan" lazy="true">
+			<key column="cr_criterion_id_pk" not-null="true" />
+			<one-to-many class="com.isg.ifrend.model.bean.EnhancedCriterion" />
+		</set>
+
+	</class>
+</hibernate-mapping>

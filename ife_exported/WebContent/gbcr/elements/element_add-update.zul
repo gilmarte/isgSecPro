@@ -1,0 +1,211 @@
+<?page title="Global Criteria - ELEMENT" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<!-- CONTENT  -->
+	<window
+		id="globalWin"
+		self="@{define(left)}"
+		title="Element - ADD"
+		contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.ElementAddUpdateComposer">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="submitTopBtn"
+					label="${labels.SUBMIT}"
+					image="../../images/ok.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="resetTopBtn"
+					label="${labels.RESET}"
+					image="../../images/reset.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="cancelTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="backTopBtn"
+					label="${labels.BACK}"
+					image="../../images/back.png"
+					sclass="ui-button-med"
+					width="96px" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<grid>
+			<rows>
+				<row id="idRow">
+					<cell align="right">
+						<label value="${labels.ELEMENT_ID} : " />
+					</cell>
+					<cell colspan="2">
+						<label id="idLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Element Type : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell colspan="2">
+						<combobox
+							id="cbb_elementtype"
+							model="@{globalWinCtrl.elemTypeList}"
+							readonly="true">
+							<comboitem
+								self="@{each=tmp_elemTypes}"
+								label="@{tmp_elemTypes.elementtype_desc}"
+								value="@{tmp_elemTypes.elementtype_id}" />
+						</combobox>
+					</cell>
+					<cell align="right">
+						<label value="${labels.DESCRIPTION} : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell colspan="5">
+						<textbox
+							id="tbx_element_desc"
+							width="300px"
+							height="30"
+							multiline="true"
+							maxlength="60" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Format : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell colspan="8">
+						<combobox
+							id="cbb_elementformat"
+							model="@{globalWinCtrl.elemFormatList}"
+							readonly="true">
+							<comboitem
+								self="@{each=tmp_elemFormats}"
+								label="@{tmp_elemFormats.elementFormat_desc}"
+								value="@{tmp_elemFormats.elementformat_id}" />
+						</combobox>
+					</cell>
+				</row>
+				<row
+					id="rowLength"
+					visible="true">
+					<cell align="right">
+						<label value="Length : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell colspan="8">
+						<intbox
+							mold="rounded"
+							id="ibx_element_length"
+							width="30px"
+							maxlength="3" />
+					</cell>
+				</row>
+				<row
+					id="rowDecimal"
+					visible="false">
+					<cell align="right">
+						<label value="Decimal : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell colspan="8">
+						<intbox
+							mold="rounded"
+							id="ibx_element_decimal"
+							width="30px"
+							maxlength="1" />
+					</cell>
+				</row>
+				<row
+					id="rowDateFormat"
+					visible="false">
+					<cell align="right">
+						<label value="Date Format : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell colspan="8">
+						<combobox
+							id="cbb_element_dateformat"
+							model="@{globalWinCtrl.dateFormatList}"
+							readonly="true">
+							<comboitem
+								self="@{each=temp_dateFormats}"
+								label="@{temp_dateFormats.dateformat_desc}"
+								value="@{temp_dateFormats.dateformat_id}" />
+						</combobox>
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Allowed Operators : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell align="left">
+						<checkbox
+							id="chb_element_operator_eq"
+							label="Equals" />
+					</cell>
+					<cell align="left">
+						<checkbox
+							id="chb_element_operator_ne"
+							label="Not Equals" />
+					</cell>
+					<cell align="left">
+						<checkbox
+							id="chb_element_operator_gt"
+							label="Greater" />
+					</cell>
+					<cell align="left">
+						<checkbox
+							id="chb_element_operator_ge"
+							label="Greater/Equals" />
+					</cell>
+					<cell align="left">
+						<checkbox
+							id="chb_element_operator_lt"
+							label="Lesser" />
+					</cell>
+					<cell
+						align="left"
+						colspan="3">
+						<checkbox
+							id="chb_element_operator_le"
+							label="Lesser/Equals" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

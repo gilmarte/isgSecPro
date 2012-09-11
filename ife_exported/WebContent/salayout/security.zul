@@ -1,0 +1,77 @@
+<zk>
+	<style src="/style/style.css" />
+	<div apply="com.isg.ifrend.view.control.SecurityAdminControl">
+		<borderlayout height="100%" sclass="main-layout">
+			<north size="9%" border="0">
+				<include src="/layout/header.zul" />
+			</north>
+			<center>
+				<panel width="100%" border="normal" height="100%"
+					title="SECURITY ADMINISTRATION" sclass="main">
+					<panelchildren>
+						<!-- TODO: UI Page Mapping from DB/xml START -->
+						<menubar id="menubar" width="100%">
+							<menu label="Add" width="100px" image="/images/add.png">
+								<menupopup>
+									<menuitem label="User Profile"
+										href="/securityadmin/userprofile/userprofile_add.zul" image="/images/userprofile.png">
+									</menuitem>
+									<menuitem label="User Group"
+										href="/securityadmin/usergroup/usergroup_add.zul" image="/images/usergroup.png">
+									</menuitem>
+									<menuitem label="User Organization"
+										href="/securityadmin/userorganization/userorganization_add.zul" image="/images/organization.png">
+									</menuitem>
+								</menupopup>
+							</menu>
+							
+							<menu label="Search" width="100px" image="/images/view.png">
+								<menupopup>
+									<menuitem label="User Profile"
+										href="/securityadmin/userprofile/userprofile_search.zul" image="/images/userprofile.png">
+									</menuitem>
+									<menuitem label="User Group"
+										href="/securityadmin/usergroup/usergroup_search.zul" image="/images/usergroup.png">
+									</menuitem>
+									<menuitem label="User Organization"
+										href="/securityadmin/userorganization/userorganization_search.zul" image="/images/organization.png">
+									</menuitem>
+								</menupopup>
+							</menu>
+
+							<menu label="Authorize" width="100px" image="/images/approve.png">
+								<menupopup>
+									<menuitem label="User Profile"
+										href="/securityadmin/userprofile/userprofile_authorize.zul" image="/images/userprofile.png">
+									</menuitem>
+									<menuitem label="User Group"
+										href="/securityadmin/usergroup/usergroup_authorize.zul" image="/images/usergroup.png">
+									</menuitem>
+									<menuitem label="User Organization"
+										href="/securityadmin/userorganization/userorganization_authorize.zul" image="/images/organization.png">
+									</menuitem>
+								</menupopup>
+							</menu>
+							
+							<menuitem id="password_admin" label="Password Administration" width="100px" visible="false"
+								href="/securityadmin/administration/userAdministration.zul" image="/images/lock_edit.png"/>
+							
+							<menuitem id="mi_gbcr" visible="false" label="Global Criteria" width="100px"
+								href="/" image="/images/globe.png"/>
+
+						</menubar>
+
+						<vlayout style="height:450px;overflow:auto">
+							<div height="100%" self="@{insert(left)}"
+								sclass="content">
+							</div>
+						</vlayout>
+					</panelchildren>
+				</panel>
+			</center>
+			<south border="none" class="footer" size="4%">
+				<include src="/layout/footer.zul" />
+			</south>
+		</borderlayout>
+	</div>
+</zk>

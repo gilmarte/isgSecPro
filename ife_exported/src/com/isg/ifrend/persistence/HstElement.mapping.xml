@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.HstElement" table="hst_elements">
+		<id name="his_elem_trans_id" column="he_element_trans_id_pk" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="hst_elem_id" column="he_element_id_fk" type="java.lang.String" />
+		<property name="hst_elemtype_id" column="he_elementtype_id_fk" type="java.lang.Integer" />
+		<property name="hst_elem_format_id" column="he_elementformat_id_fk" type="java.lang.Integer" />
+		<property name="hst_elem_length" column="he_element_length" type="java.lang.Integer" />
+		<property name="hst_elem_decimal" column="he_element_decimal" type="java.lang.Integer" />
+		<property name="hst_elem_dateformat_id" column="he_element_dateformat_id_fk" type="java.lang.Integer" />
+		<property name="hst_elem_desc" column="he_element_desc" type="java.lang.String" />
+		<property name="hst_elem_operator_eq" column="he_element_operator_eq" type="java.lang.String" />
+		<property name="hst_elem_operator_ne" column="he_element_operator_ne" type="java.lang.String" />
+		<property name="hst_elem_operator_gt" column="he_element_operator_gt" type="java.lang.String" />
+		<property name="hst_elem_operator_ge" column="he_element_operator_ge" type="java.lang.String" />
+		<property name="hst_elem_operator_lt" column="he_element_operator_lt" type="java.lang.String" />
+		<property name="hst_elem_operator_le" column="he_element_operator_le" type="java.lang.String" />
+		<property name="statusID" column="he_element_status_id" type="java.lang.Integer" />
+		<property name="actionID" column="he_element_action_id" type="java.lang.Integer" />
+		<property name="creatorUserID" column="he_element_userid_fk" type="java.lang.String" />
+		<property name="dateCreated" column="he_element_date_created" type="java.sql.Timestamp" />
+		<property name="approverUserID" column="he_element_approver_userid_fk" type="java.lang.String" />
+		<property name="dateApproved" column="he_element_date_approved" type="java.sql.Timestamp" />
+		<property name="lastModifierUserID" column="he_element_modified_userid_fk" type="java.lang.String" />
+		<property name="dateLastModified" column="he_element_last_date_modified" type="java.sql.Timestamp" />
+	</class>
+</hibernate-mapping>

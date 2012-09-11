@@ -1,0 +1,609 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<!-- CONTENT  -->
+	<!-- Change from groupbox to window to add header -->
+	<window id="criteria_view" contentStyle="overflow:auto;"
+		self="@{define(left)}" width="100%"
+		apply="com.isg.ifrend.view.control.CriteriaViewControl"
+		title="CRITERIA - VIEW">
+	<!-- <groupbox 
+		mold="3d" 
+		closable="false" 
+		id="criteria_view"
+		self="@{define(left)}" 
+		width="100%"
+		> -->
+		<groupbox contentStyle="overflow:auto;">
+		<div style="overflow:auto;">
+			<div>
+				<grid>
+					<rows>
+						<row>
+							<cell width="50%">
+								<label id="messageLbl" sclass="msg" />
+							</cell>
+							<!-- <cell colspan="15" align="left">
+								<h:a href="criteria_history.zul">
+									Criteria History
+								</h:a>
+							</cell> -->
+							<cell colspan="15" align="right" width="50%" >
+								<button id="btn_resetcriterion2"
+									label="Reset" tabindex="21"
+									image="../../images/reset.png"
+									visible="false"/>
+								<button id="btn_updatecriterion2"
+									label="Update" tabindex="23" 
+									image="../../images/update.png"/>
+								<button id="btn_savecriterion2"
+									label="Submit" tabindex="25" 
+									 image="/images/submit.png" 
+									 visible="false"/>
+								<button id="btn_deletecriterion2"
+									label="Delete" tabindex="22" 
+									image="../../images/delete.png"/>
+								<button id="btn_closecriterion2"
+									label="Back" tabindex="24" 
+									image="../../images/back.png"/>
+								<button id="btn_approve2"
+									label="Approve" tabindex="26" 
+									image="../../images/approve.png"
+									visible="false"/>
+								<button id="btn_reject2" tabindex="27"
+									label="Reject" 
+									image="../../images/reject.png"
+									visible="false"/>
+								<button id="btn_ok2" tabindex="28"
+									label="OK"
+									image="../../images/ok.png"
+									visible="false"/>
+								<button id="btn_cancel2" tabindex="29"
+									label="Cancel"
+									image="../../images/cancel.png"
+									visible="false"/>
+								<button id="btn_edit2" tabindex="30"
+									label="Edit"
+									image="../../images/edit.png"
+									visible="false"/>
+											
+							</cell>
+							<cell align="right" />
+					
+						</row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row>
+							
+							<cell align="right">
+								<label value="Criteria ID : " />
+							</cell>
+							<cell>
+								<label id="idLbl" />
+							</cell>
+						</row>
+						<row>
+							<cell align="right">
+								<label value="Country :" />
+							</cell>
+							<cell>
+								<label id="view_cbb_country_code"
+									value="@{criteria_view.criteria.country_code}" />
+								<combobox id="cbb_country_code"
+									model="@{criteria_view.lml_countryList}"
+									visible="false" readonly="true" tabindex="1" />
+								<label value="*" sclass="required-field"
+									visible="false"/>
+							</cell>
+							<cell align="right">
+								<label value="Function :" />
+							</cell>
+							<cell>
+								<label id="view_function_type"
+									value="Criteria" />
+							</cell>
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="Function :" />
+							</cell>
+							<cell>
+								<label id="view_cbb_function_code"
+									value="@{criteria_view.criteria.function_id}" />
+								<combobox id="cbb_function_code"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_functionList}"									
+									readonly="true" tabindex="2">
+									<comboitem self="@{each=function}"
+										label="@{function.function_desc}"
+										value="@{function.function_code}" />
+								</combobox>
+								<label value="*" sclass="required-field"
+									visible="false" />
+							</cell>
+							<cell align="right">
+								<label value="User Field :" />
+							</cell>
+							<cell>
+								<label id="view_cbb_userfield"/>
+								<combobox id="cbb_userfield"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_userFieldList}"									
+									readonly="true" tabindex="4">
+									<comboitem self="@{each=userField}"
+										label="@{userField.userFieldDesc}"
+										value="@{userField.userFieldID}" />
+								</combobox>
+								<label value="*" sclass="required-field"
+									visible="false" />
+							</cell>
+							<cell align="right" />
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="Priority :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_priority"/>
+							</cell>
+							<cell>
+								<label id="view_cbb_priority" />
+								<combobox id="cbb_priority"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_priorityList}"									
+									readonly="true" tabindex="3">
+									<comboitem self="@{each=priority}"
+										label="@{priority.priorityDesc}"
+										value="@{priority.priorityID}" />
+								</combobox>
+								
+							</cell>
+							<cell align="right">
+								<label value="Description :" />
+							</cell>
+							<cell colspan="2">
+								<label id="view_tbx_description"
+									value="@{criteria_view.criteria.description}" />
+								<textbox id="tbx_description"
+									width="300px" height="30" 
+									multiline="true" maxlength="60"
+									disabled="true" visible="false" 
+									tabindex="5"/>
+							</cell>
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row></row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="Pass Action :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_passaction"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_passaction"/>
+								<combobox id="cbb_passaction"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_actionPassList}"									
+									readonly="true" tabindex="6">
+									<comboitem self="@{each=action}"
+										label="@{action.action_desc}" value="@{action.action_id}" />
+								</combobox>
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Message Type :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_passMessageType"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_pass_messagetype"/>
+								<combobox id="cbb_pass_messagetype"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_messageTypeList}" readonly="true"
+									tabindex="7">
+									<comboitem
+										self="@{each=messageType}" label="@{messageType.desc}"
+										value="@{messageType.id}" />
+								</combobox>
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Letter Code :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_passlettercode"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_pass_lettercode"/>
+								<combobox id="cbb_pass_lettercode"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_letterCodeList}"									
+									readonly="true" tabindex="8">
+									<comboitem self="@{each=code}"
+										label="@{code.codeForDisplay}"
+										value="@{code.codeID}"/>
+								</combobox>
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Comment Type :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_passcommenttype"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_pass_commenttype"/>
+								<combobox id="cbb_pass_commenttype"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_commentTypeList}" readonly="true"
+									tabindex="9">
+									<comboitem
+										self="@{each=commentType}" label="@{commentType.desc}"
+										value="@{commentType.id}" />
+								</combobox>
+								
+							</cell>
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right" />
+							<cell align="right">
+								<label value="Message :" />
+							</cell>
+							<cell colspan="6">
+								<label id="view_pass_message"
+									value="@{criteria_view.criteria.pass_message}" />
+								<textbox id="tbx_pass_message"
+									width="300px" height="50" 
+									multiline="true" maxlength="255"
+									disabled="true" visible="false" />
+							</cell>
+							<cell align="right">
+								<label value="Comment :" />
+							</cell>
+							<cell colspan="6">
+								<label id="view_pass_comment"
+									value="@{criteria_view.criteria.pass_comment}" />
+								<textbox id="tbx_pass_comment"
+									width="300px" height="50" 
+									multiline="true" maxlength="255"
+									disabled="true" visible="false"  
+									tabindex="11"/>
+							</cell>
+							<cell align="right" />
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="Fail Action :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_failaction"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_failaction"/>
+								<combobox id="cbb_failaction"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_actionFailList}"									
+									readonly="true" tabindex="12">
+									<comboitem self="@{each=action}"
+										label="@{action.action_desc}" value="@{action.action_id}" />
+								</combobox>
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Message Type :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_failmessagetype"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_fail_messagetype"/>
+								<combobox id="cbb_fail_messagetype"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_messageTypeList}" readonly="true"
+									tabindex="13">
+									<comboitem
+										self="@{each=messageType}" label="@{messageType.desc}"
+										value="@{messageType.id}" />
+								</combobox>
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Letter Code :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_faillettercode"/>
+							</cell>
+							<cell colspan="3">
+								<label id="view_cbb_fail_lettercode"/>
+								<combobox id="cbb_fail_lettercode"
+									disabled="true" visible="false"
+									model="@{criteria_view.lml_letterCodeList}"									
+									readonly="true" tabindex="14">
+									<comboitem self="@{each=code}"
+										label="@{code.codeForDisplay}"
+										value="@{code.codeID}" />
+								</combobox>
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Comment Type :" />
+								<label value="*" sclass="required-field"
+									visible="false" id="asterisk_failcommenttype"/>
+							</cell>
+
+							<cell colspan="3">
+								<label id="view_cbb_fail_commenttype"/>
+								<combobox id="cbb_fail_commenttype"
+									disabled="false" visible="false"
+									model="@{criteria_view.lml_commentTypeList}" readonly="true"
+									tabindex="15">
+									<comboitem
+										self="@{each=commentType}" label="@{commentType.desc}"
+										value="@{commentType.id}" />
+								</combobox>
+								
+							</cell>
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right" />
+							<cell align="right">
+								<label value="Message :" />
+							</cell>
+							<cell colspan="6">
+								<label id="view_fail_message"
+									value="@{criteria_view.criteria.fail_message}" />
+								<textbox id="tbx_fail_message"
+									width="300px" height="50" multiline="true" maxlength="255"
+									disabled="true" visible="false" tabindex="16"/>
+							</cell>
+							<cell align="right">
+								<label value="Comment :" />
+							</cell>
+							<cell colspan="6">
+								<textbox id="tbx_fail_comment"
+									width="300px" 
+									height="50" multiline="true" 
+									maxlength="255"
+									disabled="true" visible="false" />
+								<label id="view_fail_comment"
+									value="@{criteria_view.criteria.fail_comment}" />
+							</cell>
+							<cell align="right" />
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row>
+							<cell align="left" colspan="3">
+								<label value="Enhanced Criteria :" />
+							</cell>
+						</row>
+						<row id="row_element" visible="false">
+							<cell align="right">
+								<label value="Element :" />
+								<label value="*"
+									sclass="required-field" id="asterisk_element" visible="false"/>
+							</cell>
+							<cell colspan="3">
+								<bandbox id="bbox_element_1"
+									mold="rounded" autodrop="true" readonly="true">
+									<bandpopup>
+										<listbox id="lbx_elements"
+											height="250px" width="300px" mold="paging" autopaging="true"
+											onSelect="bbox_element_1.value=self.selectedItem.label; bbox_element_1.close();">
+											<listhead>
+												<listheader label="ID"
+													width="100px" align="center" />
+												<listheader
+													label="Description" width="190px" align="center" />
+											</listhead>
+										</listbox>
+									</bandpopup>
+								</bandbox>
+							</cell>
+							<cell align="right">
+								<label value="Operator :" />
+								<label value="*"
+									sclass="required-field" id="asterisk_cbboperator" visible="false"/>
+							</cell>
+							<cell colspan="3">
+								<combobox id="cbb_operator"
+									readonly="true" tabindex="14"
+									model="@{criteria_view.lml_operatorList}">
+									<comboitem self="@{each=operator}"
+										label="@{operator.operator_desc}"
+										value="@{operator.operator_code}" />
+								</combobox>		
+								
+							</cell>
+
+							<cell align="right">
+								<label value="Operant :" />
+								<label value="*" sclass="required-field" id="asterisk_operant" visible="false"/>
+							</cell>
+							<cell colspan="2">
+								<radiogroup id="compare_value_grp" />
+								<radio id="rad_value" label="Value"
+									radiogroup="compare_value_grp" tabindex="20" />
+								<radio id="rad_element" label="Element"
+									radiogroup="compare_value_grp" tabindex="21" />
+							</cell>
+							<cell colspan="4">
+								<intbox id="ibx_enhancedvalue_integer"
+									width="100px" maxlength="10" />
+								<textbox
+									id="tbx_enhancedvalue_character" width="100px" maxlength="10" />
+								<datebox id="dbx_enhancedvalue_date"
+									cols="12" readonly="true" />
+								<bandbox id="bbox_element_2"
+									mold="rounded" autodrop="true" readonly="true">
+									<bandpopup>
+										<listbox
+											id="lbx_element_forvalue" height="250px" width="300px"
+											mold="paging" autopaging="true"
+											onSelect="bbox_element_2.value=self.selectedItem.label; bbox_element_2.close();">
+											<listhead>
+												<listheader label="ID"
+													width="100px" align="center" />
+												<listheader
+													label="Description" width="190px" align="center" />
+											</listhead>
+										</listbox>
+									</bandpopup>
+								</bandbox>
+								<label value="*"
+									sclass="required-field" visible="false"/>
+							</cell>
+							<cell>
+								<button id="btn_addcriterion"
+									label="Add" image="/images/add.png" tabindex="22" />
+							</cell>
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row align="center">
+							<listbox id="enhancedCriteriaList" width="650px"
+								height="200px" checkmark="true" multiple="true">
+								<listhead>
+									<listheader label="Element"
+										width="150px" align="center" id="element_id"/>
+									<listheader label="Operator"
+										width="100px" align="center" id="operator_id"/>
+									<listheader label="Value"
+										width="400px" align="center" id="element_value"/>
+								</listhead>
+							</listbox>
+						</row>
+						<row align="center">
+							<button id="btn_remove" label="Remove"
+								tabindex="23" image="/images/remove.png" 
+								visible="false"/>
+						</row>
+					</rows>
+				</grid>
+				<grid>
+					<rows>
+						<row>
+							<cell align="left" colspan="3">
+								<label
+									value="Final Enhanced Criteria :" />
+							</cell>
+						</row>
+						<row>
+							<cell colspan="3" align="center">
+								<textbox id="tbx_final_criteria"
+									width="1050px" height="50" multiline="true" readonly="true" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+				<grid>
+			<columns>
+				<column width="10%" />
+				<column width="30%" />
+				<column width="10%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.STATUS} : " />
+					<label id="statusLbl" />
+					<label value="${labels.ACTION} : " />
+					<label id="actionLbl" />
+				</row>
+				<row>
+					<label value="${labels.CREATED_BY} : " />
+					<label id="creatorLbl" />
+					<label value="${labels.DATE_CREATED} : " />
+					<label id="dateCreatedLbl" />
+				</row>
+				<row id="modifierRow">
+					<label value="${labels.LAST_MODIFIED_BY} : " />
+					<label id="modifierLbl" />
+					<label value="${labels.DATE_LAST_MODIFIED} : " />
+					<label id="dateModifiedLbl" />
+				</row>
+				<row id="approverRow">
+					<label value="${labels.APPROVED_BY} : " />
+					<label id="approverLbl" />
+					<label value="${labels.DATE_APPROVED} : " />
+					<label id="dateApprovedLbl" />
+				</row>
+			</rows>
+		</grid>
+				<grid>
+					<rows>
+						<row>
+							<cell colspan="15" align="left"></cell>
+							<cell colspan="15" align="right">
+								<button id="btn_resetcriterion"
+									label="Reset" tabindex="21"
+									image="../../images/reset.png"
+									visible="false"/>
+								<button id="btn_updatecriterion"
+									label="Update" tabindex="23" 
+									image="../../images/update.png"/>
+								<button id="btn_savecriterion"
+									label="Submit" tabindex="25" 
+									visible="false" image="/images/submit.png"/>
+								<button id="btn_deletecriterion"
+									label="Delete" tabindex="22" 
+									image="../../images/delete.png"/>
+								<button id="btn_closecriterion"
+									label="Back" tabindex="24" 
+									image="../../images/back.png"/>
+								<button id="btn_approve" label="Approve"
+									tabindex="26" 
+									image="../../images/approve.png"
+									visible="false"/>
+								<button id="btn_reject" tabindex="27"
+									label="Reject" 
+									image="../../images/reject.png"
+									visible="false"/>
+								<button id="btn_ok" tabindex="28"
+									label="OK"
+									image="../../images/ok.png"
+									visible="false"/>
+								<button id="btn_cancel" tabindex="29"
+									label="Cancel"
+									image="../../images/cancel.png"
+									visible="false"/>
+								<button id="btn_edit" tabindex="30"
+									label="Edit"
+									image="../../images/edit.png"
+									visible="false"/>			
+							</cell>
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+			</div>
+		</div>
+	</groupbox>
+	</window>
+</zk>

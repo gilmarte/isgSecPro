@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07 24, 12 3:14:38 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.isg.ifrend.model.bean.User" table="TBL_SA_USERS">
+  <id name="userID" type="java.lang.String">
+   <column name="USER_ID" not-null="true" unique="true"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="userName" type="java.lang.String">
+   <column name="USER_NAME"/>
+  </property>
+  <property generated="never" lazy="false" name="employeeID" type="java.lang.String">
+   <column name="EMP_ID"/>
+  </property>
+  <property access="field" generated="never" lazy="false" name="eMail" type="java.lang.String">
+   <column name="EMAIL"/>
+  </property>
+  <property generated="never" lazy="false" name="businessEntity" type="java.lang.String">
+   <column name="BUS_ENTITY"/>
+  </property>
+  <property generated="never" lazy="false" name="maxAccountBalAndStatus" type="boolean">
+   <column name="MAX_ACCT_BAL_AND_STATUS"/>
+  </property>
+  <property generated="never" lazy="false" name="vipAccountAllowed" type="boolean">
+   <column name="VIP_ACCT_ALLOWED"/>
+  </property>
+  <property generated="never" lazy="false" name="staffAccountAllowed" type="boolean">
+   <column name="STAFF_ACCT_ALLOWED"/>
+  </property>
+  <property generated="never" lazy="false" name="supervisorID" type="java.lang.String">
+   <column name="SPVR_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="customerID" type="java.lang.String">
+   <column name="CUST_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="languagePref" type="java.lang.String">
+   <column name="LANG_PREF"/>
+  </property>
+  <set lazy="true" name="userGroup" sort="unsorted" table="TBL_SA_USER_GRP_MAP">
+   <key>
+    <column name="USER_ID"/>
+   </key>
+   <many-to-many class="com.isg.ifrend.model.bean.SaUserGroup"
+    entity-name="com.isg.ifrend.model.bean.SaUserGroup" unique="false">
+    <column name="GROUP_ID"/>
+   </many-to-many>
+  </set>
+  <set lazy="true" name="userOrganization" sort="unsorted" table="TBL_SA_USER_ORG_MAP">
+   <key>
+    <column name="USER_ID"/>
+   </key>
+   <many-to-many class="com.isg.ifrend.model.bean.UserOrganization"
+    entity-name="com.isg.ifrend.model.bean.UserOrganization" unique="false">
+    <column name="ORG_ID"/>
+   </many-to-many>
+  </set>
+  <property generated="never" lazy="false" name="status" type="integer">
+   <column name="STATUS_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="action" type="integer">
+   <column name="ACTION_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="createdBy" type="java.lang.String">
+   <column name="CREATED_BY"/>
+  </property>
+  <property generated="never" lazy="false" name="dateCreated" type="java.util.Date">
+   <column name="DATE_CREATED"/>
+  </property>
+  <property generated="never" lazy="false" name="lastModifiedBy" type="java.lang.String">
+   <column name="MODIFIED_BY"/>
+  </property>
+  <property generated="never" lazy="false" name="dateLastModified" type="java.util.Date">
+   <column name="DATE_MODIFIED"/>
+  </property>
+  <property generated="never" lazy="false" name="approvedBy" type="java.lang.String">
+   <column name="APPROVED_BY"/>
+  </property>
+  <property generated="never" lazy="false" name="dateApproved" type="java.util.Date">
+   <column name="DATE_APPROVED"/>
+  </property>
+ </class>
+</hibernate-mapping>

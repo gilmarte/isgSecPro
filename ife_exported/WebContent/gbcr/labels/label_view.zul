@@ -1,0 +1,173 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?page title="Global Criteria - Label" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<window
+		id="globalWin"
+		title="Label - Details"
+		apply="com.isg.ifrend.view.control.LabelViewComposer"
+		self="@{define(left)}">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="updateTopBtn"
+					label="${labels.UPDATE}"
+					image="../../images/update.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="deleteTopBtn"
+					label="${labels.DELETE}"
+					image="../../images/delete.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="approveTopBtn"
+					label="${labels.APPROVE}"
+					image="../../images/approve.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="rejectTopBtn"
+					label="${labels.REJECT}"
+					image="../../images/reject.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="editRequestTopBtn"
+					label="${labels.EDIT}"
+					image="../../images/update.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="cancelRequestTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="okTopBtn"
+					label="${labels.OK}"
+					image="../../images/ok.png"
+					width="96px"
+					sclass="ui-button-med" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<grid>
+			<columns>
+				<column width="11%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="${labels.LABEL_ID} : " />
+					</cell>
+					<cell>
+						<label id="idLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Label Name : " />
+					</cell>
+					<cell>
+						<label id="labelNameLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Language Code : " />
+					</cell>
+					<cell>
+						<label id="languageCodeLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Native String : " />
+					</cell>
+					<cell>
+						<label id="nativeStringLbl" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<grid>
+			<columns>
+				<column width="11%" />
+				<column width="15%" />
+				<column width="11%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="Status : " />
+					</cell>
+					<cell>
+						<label id="statusLbl" />
+					</cell>
+					<cell align="right">
+						<label value="Action : " />
+					</cell>
+					<cell>
+						<label id="actionLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Created by : " />
+					</cell>
+					<cell>
+						<label id="creatorLbl" />
+					</cell>
+					<cell align="right">
+						<label value="Date Created : " />
+					</cell>
+					<cell>
+						<label id="dateCreatedLbl" />
+					</cell>
+				</row>
+				<row id="modifierRow">
+					<cell align="right">
+						<label value="Last Modified by : " />
+					</cell>
+					<cell>
+						<label id="modifierLbl" />
+					</cell>
+					<cell align="right">
+						<label value="Date Last Modified : " />
+					</cell>
+					<cell>
+						<label id="dateModifiedLbl" />
+					</cell>
+				</row>
+				<row id="approverRow">
+					<cell align="right">
+						<label value="Approved by : " />
+					</cell>
+					<cell>
+						<label id="approverLbl" />
+					</cell>
+					<cell align="right">
+						<label value="Date Approve : " />
+					</cell>
+					<cell>
+						<label id="dateApprovedLbl" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

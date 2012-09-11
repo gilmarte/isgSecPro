@@ -1,0 +1,9 @@
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window width="80%" title="Session Timeout" border="normal">
+	<vbox>
+The page or component you request is no longer available.
+This is normally caused by timeout, opening too many Web pages, or rebooting
+the server.
+	</vbox>
+</window>

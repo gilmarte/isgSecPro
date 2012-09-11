@@ -1,0 +1,43 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" 
+arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userAdministration" self="@{define(left)}"
+	title="PASSWORD ADMINISTRATION" border="normal" width="100%" height="100%"
+	apply="com.isg.ifrend.view.control.UserAdministrationControl">
+	<style src="/style/style.css" />
+
+	<groupbox width="500px" height="100%" >
+	<image id="img_info" />
+	<label id="lbl_info" />
+	<space />
+	<separator />
+		<grid>
+			<rows>
+				<row>
+					<label value="${labels.USER_ID}" />
+					<textbox id="tbx_username" />
+				</row>
+				<row>
+					<label value="${labels.NEW_PASSWORD}" />
+					<textbox id="tbx_new_pwd" type="password" />
+				</row>
+				<row>
+					<label value="${labels.CONFIRM_PASSWORD}" />
+					<textbox id="tbx_confirm_pwd" type="password" />
+				</row>
+				<row spans="2" align="center">
+					<hbox>
+						<button id="btn_set_pwd"
+							label="${labels.SET_PASSWORD}" width="100px" />
+						<space />
+						<button id="btn_reset" type="reset"
+							label="${labels.RESET}" width="100px" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+	</groupbox>
+</window>

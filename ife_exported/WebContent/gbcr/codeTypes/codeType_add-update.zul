@@ -1,0 +1,136 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?page title="Global Criteria - Code Type" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<window
+		id="globalWin"
+		title="Code Type - ADD"
+		contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.CodeTypeAddUpdateComposer"
+		self="@{define(left)}">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="submitTopBtn"
+					label="${labels.SUBMIT}"
+					image="../../images/ok.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="resetTopBtn"
+					label="${labels.RESET}"
+					image="../../images/reset.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="cancelTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="backTopBtn"
+					label="${labels.BACK}"
+					image="../../images/back.png"
+					width="96px"
+					sclass="ui-button-med" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<groupbox mold="3d">
+			<div id="idRow">
+				<label value="${labels.CODE_TYPE_ID} : " />
+				<label id="idLbl" />
+			</div>
+			<separator />
+			<label value="${labels.CODE_TYPE_DESC} :" />
+			<label
+				value="*"
+				sclass="required-field" />
+			<textbox
+				id="codeTypeDescTxt"
+				maxlength="60"
+				width="550px" />
+			<separator />
+			<grid>
+				<columns>
+					<column width="11%" />
+					<column width="11%" />
+					<column width="11%" />
+					<column width="50%" />
+				</columns>
+				<rows>
+					<row>
+						<cell align="right">
+							<label value="${labels.CODE_VALUE} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<cell>
+							<textbox
+								id="codeValueTxt"
+								maxlength="4"
+								width="46px"
+								style="text-transform:uppercase"
+								onChange="self.setValue(self.getValue().toUpperCase().trim());" />
+						</cell>
+						<cell align="right">
+							<label value="${labels.CODE_DESC} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<cell>
+							<textbox
+								id="codeDescTxt"
+								maxlength="60"
+								width="550px" />
+						</cell>
+						<cell align="right">
+							<button
+								id="addBtn"
+								label="${labels.ADD}"
+								autodisable="true"
+								image="../../images/add.png"
+								width="96px" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<listbox
+				id="codeListbox"
+				height="200px"
+				checkmark="true"
+				multiple="true">
+				<listhead>
+					<listheader
+						label="${labels.CODE_VALUE}"
+						width="252px" />
+					<listheader label="${labels.CODE_DESC}" />
+				</listhead>
+			</listbox>
+			<hbox
+				pack="end"
+				width="100%"
+				style="padding-top:5px;padding-bottom:5px">
+				<button
+					id="removeBtn"
+					label="${labels.REMOVE}"
+					image="../../images/remove.png"
+					width="96px" />
+			</hbox>
+		</groupbox>
+	</window>
+</zk>

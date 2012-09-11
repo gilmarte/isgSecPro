@@ -1,0 +1,98 @@
+<zk>
+	<style src="/style/style.css" />
+	<div apply="com.isg.ifrend.view.control.MainComposer">
+		<borderlayout
+			height="100%"
+			sclass="main-layout">
+			<north
+				size="9%"
+				border="0">
+				<include src="/layout/header.zul" />
+			</north>
+			<!-- To be handled by Spring Webflow -->
+			<center>
+				<panel
+					width="100%"
+					border="normal"
+					height="100%"
+					title="GLOBAL CRITERIA"
+					sclass="main">
+					<panelchildren>
+						<!-- TODO: UI Page Mapping from DB/xml START -->
+						<menubar
+							id="menubar"
+							width="100%">
+							<menu
+								label="Add"
+								image="/images/add.png">
+								<menupopup id="addMenu">
+									<menuitem
+										label="Element"
+										href="/gbcr/elements/element_add-update.zul"
+										image="/images/element.png">
+									</menuitem>
+									<menuitem
+										label="Criteria"
+										href="/gbcr/criteria/criteria_add.zul"
+										image="/images/criteria.png">
+									</menuitem>
+									<menuitem
+										label="MLI"
+										href="/gbcr/mli/mli_add-update.zul"
+										image="/images/mli.png" />
+									<menuitem
+										label="Script"
+										href="/gbcr/scripts/script_add-update.zul"
+										image="/images/script.png" />
+									<menuitem
+										label="Code Table"
+										href="/gbcr/codeTypes/codeType_add-update.zul"
+										image="/images/codetable.png" />
+									<menuitem
+										label="Label"
+										href="/gbcr/labels/label_add-update.zul"
+										image="/images/label.png" />
+								</menupopup>
+							</menu>
+							<menuitem
+								label="Search"
+								id="searchMenu"
+								href="/gbcr/commons/global_search.zul"
+								image="/images/view.png" />
+							<menu
+								label="Authorize"
+								image="/images/approve.png">
+								<menupopup id="authorizeMenu">
+									<menuitem
+										label="Queue"
+										href="/gbcr/commons/global_authorize.zul"
+										image="/images/approve.png" />
+									<menuitem
+										label="History"
+										href="/gbcr/commons/global_history.zul"
+										image="/images/list.png" />
+								</menupopup>
+							</menu>
+							<menuitem id="mi_security" visible="false"
+								label="Security Administration"
+								href="/salayout/security.zul"
+								image="/images/lock.png" />
+						</menubar>
+						<vlayout sclass="content">
+							<div
+								height="100%"
+								self="@{insert(left)}">
+							</div>
+						</vlayout>
+					</panelchildren>
+				</panel>
+			</center>
+			<south
+				border="none"
+				class="footer"
+				size="4%">
+				<include src="/layout/footer.zul" />
+			</south>
+		</borderlayout>
+	</div>
+</zk>

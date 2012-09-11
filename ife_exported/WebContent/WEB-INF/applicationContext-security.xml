@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:zksp="http://www.zkoss.org/2008/zkspring/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+                        http://www.zkoss.org/2008/zkspring/security http://www.zkoss.org/2008/zkspring/security/zkspring-security.xsd">
+
+	<!-- ====================================================== -->
+	<!-- For catching the @Secured annotation methods -->
+	<!-- we use our own mechanism. -->
+	<!-- Look in GFCBaseCtrl.java onEvent() method. -->
+	<!-- ====================================================== -->
+
+	<!-- Enable the @Secured annotation to secure service layer methods -->
+	<global-method-security secured-annotations="enabled" />
+
+	<!-- <http entry-point-ref="loginUrlAuthenticationEntryPoint"> -->
+	<http auto-config="true">
+		<!-- <http> -->
+		<intercept-url pattern="/gbcr/*/*add*" access="ROLE_GBCR_MAKER" />
+		<intercept-url pattern="/gbcr/*/*search*"
+			access="ROLE_GBCR_MAKER, ROLE_GBCR_CHECKER" />
+		<intercept-url pattern="/gbcr/*/*view*"
+			access="ROLE_GBCR_MAKER, ROLE_GBCR_CHECKER" />
+		<intercept-url pattern="/gbcr/*authorize*" access="ROLE_GBCR_MAKER, ROLE_GBCR_CHECKER" />
+		<intercept-url pattern="/gbcr/*history*" access="ROLE_GBCR_MAKER, ROLE_GBCR_CHECKER" />
+		<intercept-url pattern="/gbcr/**" access="ROLE_GBCR_MAKER, ROLE_GBCR_CHECKER" />
+		<intercept-url pattern="/layout/**"
+			access="ROLE_GBCR, ROLE_GBCR_MAKER, ROLE_GBCR_CHECKER" />
+		<intercept-url pattern="/securityadmin/administration/*"
+			access="ROLE_ADMIN" />
+		<intercept-url pattern="/securityadmin/*/*add*"
+			access="ROLE_ADMIN_MAKER" />
+		<intercept-url pattern="/securityadmin/*/*search*"
+			access="ROLE_ADMIN_MAKER, ROLE_ADMIN_CHECKER" />
+		<intercept-url pattern="/securityadmin/*/*view*"
+			access="ROLE_ADMIN_MAKER, ROLE_ADMIN_CHECKER" />
+		<intercept-url pattern="/securityadmin/*/*authorize*"
+			access="ROLE_ADMIN_MAKER, ROLE_ADMIN_CHECKER" />
+		<intercept-url pattern="/securityadmin/**"
+			access="ROLE_ADMIN, ROLE_ADMIN_MAKER, ROLE_ADMIN_CHECKER" />
+		<intercept-url pattern="/salayout/**"
+			access="ROLE_ADMIN, ROLE_ADMIN_MAKER, ROLE_ADMIN_CHECKER" />
+		<intercept-url pattern="/index.zul" access="IS_AUTHENTICATED_REMEMBERED" />				
+		<intercept-url pattern="/login.zul" access="IS_AUTHENTICATED_ANONYMOUSLY" />		
+		<intercept-url pattern="/changePassword.zul" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/zkau*" access="IS_AUTHENTICATED_ANONYMOUSLY" />	
+		<intercept-url pattern="/*" access="IS_AUTHENTICATED_REMEMBERED" />
+		<access-denied-handler error-page="/accessDenied.zul"/>
+		<!-- use own login page rather than the default one -->
+		<form-login login-page="/login.zul" authentication-failure-url="/login.zul?login_error=1" always-use-default-target="true" default-target-url="/index.zul"/>
+			
+	    <logout invalidate-session="true" logout-success-url="/login.zul"  />
+
+		<!-- Following is list of ZK Spring Security custom filters. They needs 
+			to be exactly in the same order as shown below in order to work. -->
+		<custom-filter ref="zkDesktopReuseFilter" position="FIRST" />
+		<custom-filter ref="zkDisableSessionInvalidateFilter"
+			before="FORM_LOGIN_FILTER" />
+		<!-- <custom-filter position="FORM_LOGIN_FILTER" ref="customUsernamePasswordAuthenticationFilter" 
+			/> -->
+		<custom-filter ref="zkEnableSessionInvalidateFilter"
+			before="FILTER_SECURITY_INTERCEPTOR" />
+		<custom-filter ref="zkLoginOKFilter" after="FILTER_SECURITY_INTERCEPTOR" />
+		<custom-filter ref="zkError403Filter" after="LOGOUT_FILTER" />
+	</http>
+
+	<!-- <beans:bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"> 
+		<beans:property name="loginFormUrl" value="/login.zul" /> </beans:bean> <beans:bean 
+		id="customUsernamePasswordAuthenticationFilter" class="com.isg.ifrend.security.CustomUsernamePasswordAuthenticationFilter"> 
+		<beans:property name="authenticationManager" ref="authenticationManager"/> 
+		<beans:property name="authenticationFailureHandler" ref="failureHandler"/> 
+		<beans:property name="authenticationSuccessHandler" ref="successHandler"/> 
+		</beans:bean> <beans:bean id="successHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"> 
+		<beans:property name="defaultTargetUrl" value="/layout/main.zul"/> </beans:bean> 
+		<beans:bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"> 
+		<beans:property name="defaultFailureUrl" value="/login.zul?login_error=true"/> 
+		</beans:bean> -->
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="jdbcUserService">
+			<password-encoder ref="passwordEncoder">
+				<salt-source ref="saltSource" />
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- Securing ZK events -->
+	<zksp:zk-event login-template-close-delay="5">
+		<!-- <zksp:intercept-event event="onClick" path="//**/btn_*"
+			access="IS_AUTHENTICATED_REMEMBERED" />
+		<zksp:intercept-event path="/**"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		Configuring Ajax popup login
+		<zksp:form-login login-page="/popupLogin.zul" /> -->
+	</zksp:zk-event>
+
+</beans:beans>

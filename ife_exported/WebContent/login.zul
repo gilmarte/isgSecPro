@@ -1,0 +1,100 @@
+<?page title="iFREND Login Page" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/gif" href="/images/animated_favicon.gif"?>
+<zk>
+	<style src="/style/style.css" />
+	<borderlayout height="100%" sclass="main-layout">
+		<north size="13%" border="0">
+			<!-- <include src="/salayout/saheader.zul" /> -->
+		</north>
+		<west width="49%" border="none">
+			<groupbox height="100%" style="border: none">
+				<vlayout top="60">
+					<image src="/images/logo.png" align="right"
+						width="600" height="375" style="stretch"/>
+				</vlayout>
+			</groupbox>
+		</west>
+		<center border="none">
+
+		</center>
+		<east width="49%" border="none">
+			<groupbox height="100%" style="border: none">
+				<vlayout top="150px">
+					<window id="loginwin" border="none" width="450px"
+						apply="com.isg.ifrend.security.control.LoginwinViewCtrl">
+						<!-- this form-login-page form is also used as the
+							form-error-page to ask for a login again. -->
+						<!-- html style="color:red"
+							if="${not empty param.login_error}">
+							
+							
+							<![CDATA[ Your login attempt was not successful, try
+							again.<br/><br/> Reason:
+							${SPRING_SECURITY_LAST_EXCEPTION.message} ]]>
+							
+							</html-->
+						<label id="lblInfo" style="font-size:30"/>
+						<groupbox>
+							<caption label="${labels.LOGIN}" style="font-size:30"/>
+							<h:form id="f" name="f"
+								action="j_spring_security_check" method="POST"
+								xmlns:h="http://www.w3.org/1999/xhtml">
+								<grid>
+									<rows>
+										<row>
+											<label
+												value="${labels.USER_ID}:" style=""/>
+											<textbox id="txtusername"
+												name="j_username" />
+										</row>
+										<row>
+											<label
+												value="${labels.PASSWORD}" />
+											<textbox id="txtpassword"
+												type="password" name="j_password" />
+										</row>
+										<row spans="2" align="right">
+											<hbox>
+												<h:input type="submit"
+													value="${labels.LOGIN}" />
+												<h:input type="reset"
+													value="${labels.RESET}" />
+												<space />
+												<space />
+												<space />
+												<space />
+												<space />
+												<space />
+											</hbox>
+										</row>
+										<row align="center" spans="2">
+											<hbox>
+												<a
+													href="/changePassword.zul"
+													label="${labels.RESET_PASSWORD}" />
+												<space />
+												<a
+													href="mailto:support@isphereglobal.com"
+													label="${labels.CONTACT_SUPPORT}" />
+												<space />
+												<a
+													href="http://www.isphereglobal.com"
+													label="${labels.ISPHERE_HOME}" target="_blank" />
+												<space />
+											</hbox>
+										</row>
+									</rows>
+								</grid>
+							</h:form>
+						</groupbox>
+					</window>
+				</vlayout>
+			</groupbox>
+
+		</east>
+		<south border="none" class="footer" size="5%">
+			<include src="/layout/footer.zul" />
+		</south>
+	</borderlayout>
+</zk>

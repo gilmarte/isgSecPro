@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.HstCodeType" table="HST_CODETYPES">
+		<id name="hstCodeTypeID" type="int">
+			<column name="HST_CT_ID_PK" />
+			<generator class="increment" />
+		</id>
+		<property generated="never" lazy="false" name="codeTypeID"
+			type="string">
+			<column name="HST_CT_ID" />
+		</property>
+		<property generated="never" lazy="false" name="desc"
+			type="java.lang.String">
+			<column name="HST_CT_DESC" />
+		</property>
+		<property generated="never" lazy="false" name="statusID"
+			type="int">
+			<column name="HST_CT_STATUS_ID" />
+		</property>
+		<property generated="never" lazy="false" name="actionID"
+			type="int">
+			<column name="HST_CT_ACTION_ID" />
+		</property>
+		<property generated="never" lazy="false" name="creatorUserID"
+			type="java.lang.String">
+			<column name="HST_CT_CREATOR_USER_ID_FK" />
+		</property>
+		<property generated="never" lazy="false" name="dateCreated"
+			type="java.util.Date">
+			<column name="HST_CT_DATE_CREATED" />
+		</property>
+		<property generated="never" lazy="false" name="lastModifierUserID"
+			type="java.lang.String">
+			<column name="HST_CT_LASTMODIFIER_USER_ID_FK" />
+		</property>
+		<property generated="never" lazy="false" name="dateLastModified"
+			type="java.util.Date">
+			<column name="HST_CT_DATE_LAST_MODIFIED" />
+		</property>
+		<property generated="never" lazy="false" name="approverUserID"
+			type="java.lang.String">
+			<column name="HST_CT_APPROVER_USER_ID_FK" />
+		</property>
+		<property generated="never" lazy="false" name="dateApproved"
+			type="java.util.Date">
+			<column name="HST_CT_DATE_APPROVED" />
+		</property>
+		<set cascade="all-delete-orphan" inverse="true" lazy="true" name="hstCodeSet"
+			sort="unsorted" table="HST_CODES">
+			<key>
+				<column name="HST_CO_CODETYPE_ID_FK" not-null="true" />
+			</key>
+			<one-to-many class="com.isg.ifrend.model.bean.HstCode" />
+		</set>
+	</class>
+</hibernate-mapping>

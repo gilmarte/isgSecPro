@@ -1,0 +1,55 @@
+<?page title="Global Criteria - CRITERIA" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+		<style src="/style/style.css" />
+	<window id="criteria_history_window" self="@{define(left)}" title="CRITERIA - HISTORY - VIEW"
+			border="normal" width="100%" height="100%" 
+			apply="com.isg.ifrend.view.control.CriteriaHistoryControl">
+	<groupbox mold="3d" closable="false">
+		<div id="crihistoryDiv">
+			<hbox pack="center" width="100%">
+				<label value="HISTORY"/>
+			</hbox>
+				<button id="exportBtn" label="Export to Excel" image="../../images/excel.png" width="96px" />
+				<grid sizedByContent="false">
+				<rows>
+					<row id="criteria_history" align="center" visible="true">
+						<listbox id="criteriaHistoryHeaderListBox" width="99%"
+							height="300px" multiple="true" sizedByContent="true" 
+							mold="paging" pageSize="7" pagingPosition="top"
+							model="@{criteria_history_window.lml_historylist}">
+							<listhead>
+								<listheader label="Criteria ID"
+									width="100px" align="center" sort="auto(criteria_id)" id="criId"/>
+								<listheader label="Criteria Description" 
+									width="400px" align="center" sort="auto(criteria_desc)" id="criDesc"/>
+								<listheader label="Status"
+									width="180px" align="center" sort="auto(status_desc)" id="criStaDesc"/>
+								<listheader label="Creator"
+									width="180px" align="center" sort="auto(criteria_creator)" id="criCreator"/>
+								<listheader label="Date Created"
+									width="180px" align="center" sort="auto(criteria_date_created)" id="criDateCreated"/>
+								<listheader label="Last Modified By"
+									width="180px" align="center" sort="auto(criteria_lastmod_userid)" id="criLastModBy"/>
+								<listheader label="Last Date Modified" 
+									width="180px" align="center" sort="auto(criteria_last_date_modified)" id="criLastDateMod"/> 
+								<listheader label="Approved By"
+									width="180px" align="center" sort="auto(criteria_approver)" id="criApprover"/>
+								<listheader label="Date Approved"
+									width="180px" align="center" sort="auto(criteria_date_approved)" id="criDateApproved"/>									
+							</listhead>
+						</listbox>
+					</row>
+				</rows>	
+			</grid>
+			<hbox id="option_buttons_below" pack="right" width="100%">
+				<button id="btn_back" label="Back" image="/images/back.png"/>
+			</hbox>
+				
+		</div>
+	</groupbox>
+	</window>
+</zk>

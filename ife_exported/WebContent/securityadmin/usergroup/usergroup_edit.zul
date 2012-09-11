@@ -1,0 +1,154 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" 
+arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userGroupEditPage" self="@{define(left)}"
+	title="USER GROUP - EDIT" border="normal" width="100%" height="100%"
+	apply="com.isg.ifrend.view.control.UserGroupEditPageViewCtrl">	
+	<!-- Block Fields Start -->
+	<style src="/style/style.css" />
+	<groupbox closable="false" mold="3d" width="100%" >
+		<div width="100%">
+			<hbox pack="right" width="100%" >
+				<cell align="left" width="50%">
+					<image id="img_info" />
+					<label id="lblinfo" />
+				</cell>
+				<cell align="right" width="50%" >
+					<button id="btn_update_top" label="Update"
+						image="/images/update.png" width="80px" />
+					<space />
+					<button id="btn_delete_top" label="Delete"
+						image="/images/delete.png" width="80px" />
+					<space />
+					<button id="btn_cancel_top" label="Cancel"
+						image="/images/cancel.png" width="80px" />
+					<space />
+					<button id="btn_approve_top" label="Approve"
+						image="/images/approve.png" width="80px" />
+					<space />
+					<button id="btn_reject_top" label="Reject"
+						image="/images/reject.png" width="80px" />
+					<space />
+					<button id="btn_reset_top" label="Reset"
+						image="/images/reset.png" width="80px" />
+					<space />
+					<button id="btn_back_top" label="Back"
+						image="/images/back.png" width="80px" />
+				</cell>
+			</hbox>
+		</div>
+		<separator/>
+		<div>
+			<grid sizedByContent="false">
+				<rows>
+					<row>
+						<cell width="100">
+							<label value="User Group ID : "></label>
+							<label value="*" sclass="required-field" />
+						</cell>
+						<cell>
+							<textbox id="groupId" readonly="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="100">
+							<label value="Description : "></label>
+							<label value="*" sclass="required-field" />
+						</cell>
+						<cell>
+							<textbox id="txtGroupDesc" multiline="true" 
+								height="50" width="300"/>
+						</cell>
+					</row>					
+				</rows>
+			</grid>
+		</div>
+	</groupbox>
+	<!-- Block Fields End -->
+	<separator/>
+	<!-- Block Dual List Start -->
+	<groupbox mold="3d" closable="false">
+		<div>
+			<grid>
+				<rows>
+					<row>
+						<cell width="45%">
+							<listbox id="src" rows="0" multiple="true"
+								height="200px" model="@{userGroupEditPage.lml_functionlist }"
+								>
+								<listhead width="100%">
+									<listheader
+										label="Functions Available" />
+								</listhead>								
+								<listitem self="@{each='functions' }"
+									value="@{functions }">
+									<listcell
+										label="@{functions.description}" />
+								</listitem>
+							</listbox>
+						</cell>
+						<cell width="5%" align="center">
+						<vbox>
+							<image style="cursor:pointer"
+								id="movealltodest"
+								src="/images/rightrightarrow_g.png" />
+							<image style="cursor:pointer"
+								id="movetodest"
+								src="/images/rightarrow_g.png" />
+							<image style="cursor:pointer" id="movetosrc"
+								src="/images/leftarrow_g.png" />
+							<image style="cursor:pointer"
+								id="movealltosrc"
+								src="/images/leftleftarrow_g.png" />
+						</vbox>
+						</cell>
+						<cell width="45%">
+							<listbox id="dst" checkmark="false" rows="0"
+								multiple="true" height="200px" model="@{userGroupEditPage.lml_selectedfunctions }">
+								<listhead>
+									<listheader
+										label="Functions Selected" />
+								</listhead>
+								<listitem self="@{each='selectedfunctions' }"
+									value="@{selectedfunctions }">
+									<listcell
+										label="@{selectedfunctions.description}" />
+								</listitem>
+							</listbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</div>
+		<separator />
+		<div>
+			<hbox pack="right" width="100%">
+				<cell width="100%">
+					<button id="btn_update_foot" label="Update"
+						image="/images/update.png" width="80px" />
+					<space />
+					<button id="btn_delete_foot" label="Delete"
+						image="/images/delete.png" width="80px" />
+					<space />
+					<button id="btn_cancel_foot" label="Cancel"
+						image="/images/cancel.png" width="80px" />
+					<space />
+					<button id="btn_approve_foot" label="Approve"
+						image="/images/approve.png" width="80px" />
+					<space />
+					<button id="btn_reject_foot" label="Reject"
+						image="/images/reject.png" width="80px" />
+					<space />
+					<button id="btn_reset_foot" label="Reset"
+						image="/images/reset.png" width="80px" />
+					<space />
+					<button id="btn_back_foot" label="Back"
+						image="/images/back.png" width="80px" />
+				</cell>
+			</hbox>
+		</div>
+	</groupbox>
+	<!-- Block Dual List End -->
+</window>

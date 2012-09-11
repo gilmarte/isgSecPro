@@ -1,0 +1,81 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userprofile_search" self="@{define(left)}"
+	title="USER PROFILE - SEARCH" border="normal" width="100%"
+	height="100%"
+	apply="com.isg.ifrend.view.control.UserProfileSearchVM">
+	
+	<groupbox closable="false" mold="3d" width="100%">
+		<div>
+			<hbox width="100%">
+				<cell width="50%" align="left">
+					<label id="lb_info" />
+				</cell>
+				<cell width="50%" align="right">
+					<button id="btn_add" label="${labels.ADD}"
+						width="80px" visible="false" image="../../images/add.png" />
+					<space />
+					<button id="btn_delete" label="${labels.DELETE}"
+						width="80px" visible="false" image="../../images/delete.png" />
+					<space />
+					<button id="btn_export" width="120px"
+						label="${labels.EXPORT}" image="../../images/excel.png" />
+					<space />
+					<button id="btn_back" label="${labels.BACK}"
+						width="80px" image="../../images/back.png" />
+				</cell>
+			</hbox>
+		</div>
+		<separator />
+		<div>
+			<hbox width="100%">
+				<cell>
+					<label value="${labels.USER_ID}" />
+					<!-- </cell>
+						<cell> -->
+					<space />
+					<bandbox id="bb_user_profile" mold="rounded"
+						autodrop="true">
+						<bandpopup>
+							<listbox id="lb_user_search"
+								model="@{userprofile_searchControl.userList}" mold="paging"
+								height="200px" width="300px" pageSize="5">
+								<listhead>
+									<listheader
+										label="${labels.USER_ID}" sort="auto" />
+								</listhead>
+								<listitem self="@{each='user'}">
+									<listcell label="@{user}" />
+								</listitem>
+							</listbox>
+						</bandpopup>
+					</bandbox>
+				</cell>
+			</hbox>
+		</div>
+		<separator />
+		<div height="300px">
+			<listbox id="lb_user_list"
+				model="@{userprofile_searchControl.userList}"
+				multiple="true" checkmark="true" mold="paging" pageSize="7"
+				pagingPosition="top" height="290px" span="true">
+				<listhead>
+					<listheader label="${labels.USER_ID}" width="10%" hflex="2" />
+					<listheader label="${labels.USER_NAME}" width="12%" hflex="3" align="center" />
+					<listheader label="${labels.STATUS}" width="12%" hflex="3" align="center" />
+					<!-- <listheader label="${labels.ACTION}" width="10%" /> -->
+					<!-- <listheader label="${labels.CREATED_BY}" width="10%" />
+					<listheader label="${labels.DATE_CREATED}" width="12%" /> -->
+					<!-- <listheader label="${labels.LAST_MODIFIED_BY}" width="10%" hflex="2" />
+					<listheader label="${labels.DATE_LAST_MODIFIED}" width="12%" hflex="4" /> -->
+					<listheader label="${labels.MAKER_ID}" width="10%" hflex="2" align="center" />
+					<listheader label="${labels.ACTION_DATE}" width="12%" hflex="4" align="center" />
+					<!-- <listheader label="${labels.APPROVED_BY}" width="10%" />
+					<listheader label="${labels.DATE_APPROVED}" width="12%" /> -->
+				</listhead>
+			</listbox>
+		</div>
+	</groupbox>
+</window>

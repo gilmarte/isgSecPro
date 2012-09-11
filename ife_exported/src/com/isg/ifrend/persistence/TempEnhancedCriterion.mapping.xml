@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+
+	<class name="com.isg.ifrend.model.bean.TempEnhancedCriterion"
+		table="tmp_enhanced_criteria">
+
+		<id name="enhancedcriteria_id" type="int">
+			<column name="te_ec_enhancedcriteria_id_pk" />
+			<generator class="increment" />
+		</id>
+
+		<property name="element_id" type="java.lang.String">
+			<column name="te_ec_element_id_fk" />
+		</property>
+
+		<property name="operator_code" type="java.lang.String">
+			<column name="te_ec_operator_code_fk" />
+		</property>
+
+		<property name="enhanced_value_integer" type="integer">
+			<column name="te_ec_value_integer" />
+		</property>
+
+		<property name="enhanced_value_character" type="java.lang.String">
+			<column name="te_ec_value_character" />
+		</property>
+
+		<property name="enhanced_value_element" type="java.lang.String">
+			<column name="te_ec_value_element_id_fk" />
+		</property>
+
+		<property name="enhanced_value_date" type="java.util.Date">
+			<column name="te_ec_value_date" />
+		</property>
+
+		<property name="enhanced_value_dateformat_id" type="java.lang.Integer">
+			<column name="TE_EC_VALUE_DATEFORMAT_ID_FK" />
+		</property>
+
+		<many-to-one name="tempCriteria" class="com.isg.ifrend.model.bean.TempCriteria"
+			column="te_ec_criteria_id_fk" insert="true" update="true" not-null="true" />
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,253 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userProfileComparePage" self="@{define(left)}"
+	title="USER PROFILE - COMPARE" border="normal" width="100%"
+	height="100%"
+	apply="com.isg.ifrend.view.control.UserProfileCompareVM">
+	<groupbox closable="false" mold="3d" width="100%" height="100%" >
+		<label id="lblinfo" />
+		<div>
+			<hbox pack="right" width="100%" spacing="2">
+				<button id="btn_back" label="${labels.BACK}"
+					image="/images/back.png" />
+			</hbox>
+		</div>
+		<separator />
+		<panel border="normal" width="100%" height="360px">
+			<panelchildren style="overflow:auto">
+				<hbox spacing="0" width="98%" height="100%">
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="${labels.TEMPORARY_RECORD}"
+											width="25%" />
+										<column label="" />
+									</columns>
+									<rows>
+										<row>
+											<label value="${labels.USER_ID}" />
+											<label
+												id="lbl_temp_user_id" />
+										</row>
+										<row>
+											<label
+												value="${labels.CURRENT_STATUS}" />
+											<label
+												id="lbl_temp_current_status" />
+										</row>
+										<row>
+											<label value="${labels.USER_NAME}" />
+											<label
+												id="lbl_temp_username" />
+										</row>
+										<row>
+											<label value="${labels.EMPLOYEE_ID}" />
+											<label id="lbl_temp_emp_id" />
+										</row>
+										<row >
+											<label value="${labels.EMAIL}" />
+											<label id="lbl_temp_email" />
+										</row>
+										<row >
+											<label
+												value="${labels.BUSINESS_ENTITY}" />
+											<label
+												id="lbl_temp_business_entity" />
+										</row>
+										<row >
+											<label
+												value="${labels.MAX_ACCT_BAL_AND_STATUS}" />
+											<label
+												id="lbl_temp_max_acctbal" />
+										</row>
+										<row >
+											<label
+												value="${labels.VIP_ACCT_ALLOWED}" />
+											<label
+												id="lbl_temp_vip_acct" />
+										</row>
+										<row >
+											<label
+												value="${labels.SUPERVISOR_ID}" />
+											<label
+												id="lbl_temp_supervisor_id" />
+										</row>
+										<row >
+											<label
+												value="${labels.STAFF_ACCT_ALLOWED}" />
+											<label
+												id="lbl_temp_staff_acct" />
+										</row>
+										<row >
+											<label value="${labels.CUSTOMER_ID}" />
+											<label
+												id="lbl_temp_customer_id" />
+										</row>
+										<row >
+											<label
+												value="${labels.LANGUAGE_PREFERENCE}" />
+											<label
+												id="lbl_temp_language_pref" />
+										</row>
+										<row >
+											<label
+												value="${labels.USER_GROUP}" />
+											<label multiline="true"
+												id="lbl_temp_user_grp" />
+										</row>
+										<row >
+											<label
+												value="${labels.USER_ORG}" />
+											<label multiline="true"
+												id="lbl_temp_user_org" />
+										</row>
+									</rows>
+								</grid>
+							</row>
+							<!-- <row >
+								<label value="Created by:" />
+								<label id="lbl_temp_created_by" />
+								</row>
+								<row >
+								<label value="Date Created:" />
+								<label id="lbl_temp_date_created" />
+								</row>
+								<row >
+								<label value="Last Modified by:" />
+								<label id="lbl_temp_last_modified" />
+								</row>
+								<row >
+								<label value="Date Last Modified:" />
+								<label id="lbl_temp_date_last_mod" />
+								</row>
+								<row >
+								<label value="Approved by:" />
+								<label id="lbl_temp_approved_by" />
+								</row>
+								<row >
+								<label value="Date Approved:" />
+								<label id="lbl_temp_date_approved" />
+								</row> -->
+						</rows>
+					</grid>
+					<splitter id="s1" />
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="${labels.MASTER_RECORD}"
+											width="25%" />
+										<column label="" />
+									</columns>
+									<rows>
+										<row>
+											<label value="${labels.USER_ID}" />
+											<label id="lbl_mst_user_id" />
+										</row>
+										<row>
+											<label
+												value="${labels.CURRENT_STATUS}" />
+											<label
+												id="lbl_mst_current_status" />
+										</row>
+										<row>
+											<label value="${labels.USER_NAME}" />
+											<label
+												id="lbl_mst_username" />
+										</row>
+										<row>
+											<label value="${labels.EMPLOYEE_ID}" />
+											<label id="lbl_mst_emp_id" />
+										</row>
+										<row >
+											<label value="${labels.EMAIL}" />
+											<label id="lbl_mst_email" />
+										</row>
+										<row >
+											<label
+												value="${labels.BUSINESS_ENTITY}" />
+											<label
+												id="lbl_mst_business_entity" />
+										</row>
+										<row >
+											<label
+												value="${labels.MAX_ACCT_BAL_AND_STATUS}" />
+											<label
+												id="lbl_mst_max_acctbal" />
+										</row>
+										<row >
+											<label
+												value="${labels.VIP_ACCT_ALLOWED}" />
+											<label
+												id="lbl_mst_vip_acct" />
+										</row>
+										<row >
+											<label
+												value="${labels.SUPERVISOR_ID}" />
+											<label
+												id="lbl_mst_supervisor_id" />
+										</row>
+										<row >
+											<label
+												value="${labels.STAFF_ACCT_ALLOWED}" />
+											<label
+												id="lbl_mst_staff_acct" />
+										</row>
+										<row >
+											<label value="${labels.CUSTOMER_ID}" />
+											<label
+												id="lbl_mst_customer_id" />
+										</row>
+										<row >
+											<label
+												value="${labels.LANGUAGE_PREFERENCE}" />
+											<label
+												id="lbl_mst_language_pref" />
+										</row>
+										<row >
+											<label
+												value="${labels.USER_GROUP}" />
+											<label multiline="true"
+												id="lbl_mst_user_grp" />
+										</row>
+										<row >
+											<label
+												value="${labels.USER_ORG}" />
+											<label multiline="true"
+												id="lbl_mst_user_org" />
+										</row>
+									</rows>
+								</grid>
+							</row>
+							<!-- <row >
+								<label value="Date Created:" />
+								<label id="lbl_mst_date_created" />
+								</row>
+								<row >
+								<label value="Last Modified by:" />
+								<label id="lbl_mst_last_modified" />
+								</row>
+								<row >
+								<label value="Date Last Modified:" />
+								<label id="lbl_mst_date_last_mod" />
+								</row>
+								<row >
+								<label value="Approved by:" />
+								<label id="lbl_mst_approved_by" />
+								</row>
+								<row >
+								<label value="Date Approved:" />
+								<label id="lbl_mst_date_approved" />
+								</row> -->
+						</rows>
+					</grid>
+				</hbox>
+			</panelchildren>
+		</panel>
+	</groupbox>
+</window>

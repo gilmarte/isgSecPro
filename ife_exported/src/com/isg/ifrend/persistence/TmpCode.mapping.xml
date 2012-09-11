@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.TmpCode" table="TMP_CODES">
+		<id name="codeID" type="int">
+			<column name="TMP_CO_ID_PK" />
+			<generator class="com.isg.ifrend.utils.CodeIDGenerator" />
+		</id>
+		<property generated="never" lazy="false" name="codeValue"
+			type="java.lang.String">
+			<column name="TMP_CO_VALUE" />
+		</property>
+		<property generated="never" lazy="false" name="codeDesc"
+			type="java.lang.String">
+			<column name="TMP_CO_DESC" />
+		</property>
+		<many-to-one class="com.isg.ifrend.model.bean.TmpCodeType"
+			column="TMP_CO_CODETYPE_ID_FK" name="tmpCodeType" not-null="true" />
+	</class>
+</hibernate-mapping>

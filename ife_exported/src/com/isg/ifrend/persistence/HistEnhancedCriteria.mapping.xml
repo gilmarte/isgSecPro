@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.isg.ifrend.model.bean.HistEnhancedCriteria"
+		table="HST_ENHANCED_CRITERIA">
+		<id name="enhancedcriteria_id" access="field" type="int">
+			<column name="HE_EC_ENHANCEDCRITERIA_ID_PK" />
+			<generator class="increment" />
+		</id>
+		
+		<property name="element_id" type="java.lang.String">
+			<column name="HE_EC_ELEMENT_ID_FK" />
+		</property>
+		<property name="operator_code" type="java.lang.String">
+			<column name="HE_EC_OPERATOR_CODE_FK" />
+		</property>
+		<property name="enhanced_value_integer" type="java.lang.Integer">
+			<column name="HE_EC_VALUE_INTEGER" />
+		</property>
+		<property name="enhanced_value_character" type="java.lang.String">
+			<column name="HE_EC_VALUE_CHARACTER" />
+		</property>
+		<property name="enhanced_value_element" type="java.lang.String">
+			<column name="HE_EC_VALUE_ELEMENT_ID_FK" />
+		</property>
+		<property name="enhanced_value_date" type="java.util.Date">
+			<column name="HE_EC_VALUE_DATE" />
+		</property>
+		<property name="enhanced_value_dateformat_id" type="java.lang.Integer">
+			<column name="HE_EC_VALUE_DATEFORMAT_ID_FK" />
+		</property>
+
+		<many-to-one name="histCriteria" class="com.isg.ifrend.model.bean.HistCriteria"
+			column="HE_EC_CRITERIA_ID_FK" insert="true" update="false" fetch="join" not-null="true" />
+			
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="Country" table="ref_countries">
+		<id name="country_code" column="co_country_code_pk" type="string">
+			<generator class="assigned" />
+		</id>
+
+		<property name="country_desc" column="co_country_desc"
+			type="string" />
+	</class>
+</hibernate-mapping>

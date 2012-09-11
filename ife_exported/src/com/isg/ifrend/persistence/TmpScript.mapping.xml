@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="TmpScript" table="TMP_SCRIPTS">
+		<id name="scriptID" column="TMP_SC_ID_PK" type="string">
+			<generator class="assigned" />
+		</id>
+		<property name="countryCode" column="TMP_SC_COUNTRYCODE_FK" type="string" />
+		<property name="functionCode" column="TMP_SC_FUNCTIONCODE_FK" type="string" />
+		<property name="userFieldID" column="TMP_SC_USERFIELD_ID_FK" type="integer" />
+		<property name="priorityID" column="TMP_SC_PRIORITY_ID_FK" type="integer" />
+		<property name="desc" column="TMP_SC_DESC" type="string" />
+		<property name="messageTypeID" column="TMP_SC_MESSAGETYPE_ID" type="integer" />
+		<property name="message" column="TMP_SC_MESSAGE" type="string" />
+		<property name="commentTypeID" column="TMP_SC_COMMENTTYPE_ID" type="integer" />
+		<property name="comment" column="TMP_SC_COMMENT" type="string" />
+		<property name="statusID" column="TMP_SC_STATUS_ID" type="integer" />
+		<property name="actionID" column="TMP_SC_ACTION_ID" type="integer" />
+		<property name="creatorUserID" column="TMP_SC_CREATOR_USER_ID_FK" type="string" />
+		<property name="dateCreated" column="TMP_SC_DATE_CREATED" type="java.sql.Timestamp" />
+		<property name="approverUserID" column="TMP_SC_APPROVER_USER_ID_FK" type="string" />
+		<property name="dateApproved" column="TMP_SC_DATE_APPROVED" type="java.sql.Timestamp" />
+		<property name="lastModifierUserID" column="TMP_SC_LASTMODIFIER_USER_ID_FK" type="string" />
+		<property name="dateLastModified" column="TMP_SC_DATE_LAST_MODIFIED" type="java.sql.Timestamp" />
+	</class>
+</hibernate-mapping>

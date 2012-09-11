@@ -1,0 +1,184 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?page title="Global Criteria - History" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<window
+		id="globalWin"
+		title="Global Criteria - HISTORY"
+		apply="com.isg.ifrend.view.control.HistoryControl"
+		self="@{define(left)}">
+		<!-- <separator class="content-bar" /> -->
+		<grid>
+			<columns>
+				<column width="5%" />
+				<column width="12%" />
+				<column width="8%" />
+				<column width="18%" />
+				<column width="8%" />
+				<column width="14%" />
+				<column width="9%" />
+				<column width="26%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="ID : " />
+					</cell>
+					<cell>
+						<textbox
+							id="idTxt"
+							width="100px"
+							style="text-transform:uppercase"
+							onChange="self.setValue(self.getValue().toUpperCase().trim());" />
+					</cell>
+					<cell align="right">
+						<label value="Description : " />
+					</cell>
+					<cell>
+						<textbox
+							id="descTxt"
+							width="160px" />
+					</cell>
+					<cell align="right">
+						<label value="Start Date : " />
+					</cell>
+					<cell>
+						<datebox
+							id="startDate"
+							format="yyyy-MM-dd" />
+					</cell>
+					<cell align="right">
+						<label value="End Date : " />
+					</cell>
+					<cell>
+						<datebox
+							id="endDate"
+							format="yyyy-MM-dd" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Entity : " />
+					</cell>
+					<cell>
+						<combobox
+							id="entityCmb"
+							readonly="true"
+							width="100px"
+							onAfterRender="self.setSelectedIndex(0)">
+							<comboitem label="All" />
+							<comboitem label="Element" />
+							<comboitem label="Criteria" />
+							<comboitem label="Script" />
+							<comboitem label="MLI" />
+							<comboitem label="Code Table" />
+							<comboitem label="Label" />
+						</combobox>
+					</cell>
+					<cell align="right">
+						<label value="Status : " />
+					</cell>
+					<cell>
+						<combobox
+							id="statusCmb"
+							readonly="true"
+							width="130px"
+							onAfterRender="self.setSelectedIndex(0)">
+							<comboitem label="All" />
+							<comboitem label="Approved" />
+							<comboitem label="Rejected" />
+							<comboitem label="Pending Authorization" />
+							<comboitem label="Cancelled" />
+						</combobox>
+					</cell>
+					<cell align="right">
+						<label value="Action : " />
+					</cell>
+					<cell>
+						<combobox
+							id="actionCmb"
+							width="100px"
+							readonly="true"
+							onAfterRender="self.setSelectedIndex(0)">
+							<comboitem label="All" />
+							<comboitem label="Add" />
+							<comboitem label="Update" />
+							<comboitem label="Delete" />
+						</combobox>
+					</cell>
+					<cell
+						align="center"
+						colspan="2">
+						<button
+							id="searchBtn"
+							label="List"
+							image="../../images/list.png"
+							width="96px"
+							class="ui-button-sml" />
+						<button
+							id="resetBtn"
+							label="Reset"
+							image="../../images/reset.png"
+							width="96px"
+							sclass="ui-button-sml" />
+						<button
+							id="exportBtn"
+							label="Export to Excel"
+							image="../../images/excel.png"
+							sclass="ui-button-med" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<listbox
+			id="resultListbox"
+			mold="paging"
+			pageSize="10"
+			pagingPosition="bottom">
+			<listhead>
+				<listheader
+					label="ID"
+					width="10%"
+					align="center"
+					sort="auto(id)" />
+				<listheader
+					label="Description"
+					width="24%"
+					align="center"
+					sort="auto(desc)" />
+				<listheader
+					label="Status"
+					width="15%"
+					align="center"
+					sort="auto(statusID)" />
+				<listheader
+					label="Action"
+					width="7%"
+					align="center"
+					sort="auto(actionID)" />
+				<listheader
+					label="Maker ID"
+					width="8%"
+					align="center"
+					sort="auto(lastModifierUserID)" />
+				<listheader
+					label="Action Date"
+					width="14%"
+					align="center"
+					sort="auto(dateLastModified)" />
+				<listheader
+					label="Checker ID"
+					width="8%"
+					align="center"
+					sort="auto(approverUserID)" />
+				<listheader
+					label="Date Approved"
+					width="14%"
+					align="center"
+					sort="auto(dateApproved)" />
+			</listhead>
+		</listbox>
+	</window>
+</zk>

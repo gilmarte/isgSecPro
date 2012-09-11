@@ -1,0 +1,125 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" 
+arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userGroupAddPage" self="@{define(left)}"
+	title="USER GROUP - ADD" border="normal" width="100%" height="100%"
+	apply="com.isg.ifrend.view.control.UserGroupAddPageViewCtrl">
+	<style src="/style/style.css" />
+	<!-- Block Fields Start -->
+	<groupbox closable="false" mold="3d">
+		<div>
+			<hbox width="100%">
+				<cell width="50%" align="left">
+					<image id="img_info" />
+					<label id="lblinfo" />
+				</cell>
+				<cell width="50%" align="right">
+					<button id="btn_save_top" label="Submit"
+						width="80px" image="/images/submit.png" />
+					<space/>
+					<button id="btn_reset_top" label="Reset"
+						width="80px" image="/images/reset.png" />
+					<space/>
+					<button id="btn_back_top" label="Back" width="80px"
+						image="/images/back.png" />
+				</cell>
+			</hbox>
+		</div>
+		<separator />
+		<div>
+			<grid sizedByContent="false">
+				<rows>
+					<row>
+						<cell width="100">
+							<label value="User Group ID : "></label>
+							<label value="*" sclass="required-field" />
+						</cell>
+						<cell>
+							<textbox id="groupId" />
+						</cell>
+					</row>
+					<row>
+						<cell width="100">
+							<label value="Description : "></label>
+							<label value="*" sclass="required-field" />
+						</cell>
+						<cell>
+							<textbox id="txtGroupDesc" multiline="true"
+								height="50" width="300" />
+						</cell>
+					</row>					
+				</rows>
+			</grid>
+		</div>
+	</groupbox>
+	<!-- Block Fields End -->
+
+	<!-- Block Dual List Start -->
+	<groupbox mold="3d" closable="false">
+		<div>
+			<grid>
+				<rows>
+					<row>
+						<cell width="45%">
+							<listbox id="src" rows="0" multiple="true"
+								height="200px" model="@{userGroupAddPage.lml_functionlist }">
+								<listhead width="100%">
+									<listheader
+										label="Functions Available" />
+								</listhead>
+								<listitem self="@{each='functions' }"
+									value="@{functions }">
+									<listcell
+										label="@{functions.description}" />
+								</listitem>
+							</listbox>
+						</cell>
+						<cell width="5%" align="center">
+							<vbox>
+								<image style="cursor:pointer"
+									id="movealltodest" src="/images/rightrightarrow_g.png" />
+								<image style="cursor:pointer"
+									id="movetodest" src="/images/rightarrow_g.png" />
+								<image style="cursor:pointer"
+									id="movetosrc" src="/images/leftarrow_g.png" />
+								<image style="cursor:pointer"
+									id="movealltosrc" src="/images/leftleftarrow_g.png" />
+							</vbox>
+						</cell>
+						<cell width="45%">
+							<listbox id="dst" checkmark="false" rows="0"
+								multiple="true" height="200px"
+								model="@{userGroupAddPage.lml_selectedfunctions}">
+								<listhead>
+									<listheader
+										label="Functions Selected" />
+								</listhead>
+								<listitem
+									self="@{each='selectedfunctions' }"
+									value="@{selectedfunctions }">
+									<listcell
+										label="@{selectedfunctions.description}" />
+								</listitem>
+							</listbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</div>
+		<separator />
+		<div>
+			<hbox pack="right" width="100%">
+				<cell>
+					<button id="btn_save_foot" label="Submit" image="/images/submit.png" width="80px" />
+					<space />
+					<button id="btn_reset_foot" label="Reset" image="/images/reset.png" width="80px" />
+					<space />
+					<button id="btn_back_foot" label="Back" image="/images/back.png" width="80px" />
+				</cell>
+			</hbox>
+		</div>
+	</groupbox>
+	<!-- Block Dual List End -->
+</window>

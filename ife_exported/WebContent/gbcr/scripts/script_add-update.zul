@@ -1,0 +1,200 @@
+<?page title="Global Criteria - SCRIPT" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<window
+		id="globalWin"
+		self="@{define(left)}"
+		title="Script - ADD"
+		contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.ScriptAddUpdateComposer">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="submitTopBtn"
+					label="${labels.SUBMIT}"
+					image="../../images/ok.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="resetTopBtn"
+					label="${labels.RESET}"
+					image="../../images/reset.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="cancelTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="backTopBtn"
+					label="${labels.BACK}"
+					image="../../images/back.png"
+					sclass="ui-button-med"
+					width="96px" />
+			</cell>
+		</hbox>
+		<separator />
+		<div>
+			<grid>
+				<columns>
+					<column width="10%" />
+					<column width="40%" />
+					<column width="10%" />
+					<column width="40%" />
+				</columns>
+				<rows>
+					<row id="idRow">
+						<cell align="right">
+							<label value="${labels.SCRIPT_ID}" />
+						</cell>
+						<cell colspan="3">
+							<label id="idLbl" />
+						</cell>
+					</row>
+					<row>
+						<cell align="right">
+							<label value="${labels.FUNCTION_TYPE} :" />
+						</cell>
+						<label id="functionTypeLbl" />
+						<cell align="right">
+							<label value="${labels.FUNCTION_ID} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<combobox
+							id="functionCmb"
+							width="250px"
+							readonly="true"
+							model="@{globalWinCtrl.functionList}"
+							value="${labels.SELECT_ONE}">
+							<comboitem
+								self="@{each=function}"
+								label="@{function.function_desc}"
+								value="@{function.function_code}" />
+						</combobox>
+					</row>
+					<row>
+						<cell align="right">
+							<label value="${labels.USER_FIELD} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<combobox
+							id="userFieldCmb"
+							width="250px"
+							readonly="true"
+							model="@{globalWinCtrl.userFieldList}"
+							value="${labels.SELECT_ONE}">
+							<comboitem
+								self="@{each=userField}"
+								label="@{userField.userFieldDesc}"
+								value="@{userField.userFieldID}" />
+						</combobox>
+						<cell align="right">
+							<label value="${labels.PRIORITY} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<combobox
+							id="priorityCmb"
+							width="250px"
+							readonly="true"
+							model="@{globalWinCtrl.priorityList}"
+							value="${labels.SELECT_ONE}">
+							<comboitem
+								self="@{each=priority}"
+								label="@{priority.priorityDesc}"
+								value="@{priority.priorityID}" />
+						</combobox>
+					</row>
+					<row>
+						<cell align="right">
+							<label value="${labels.DESCRIPTION} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<cell colspan="3">
+							<textbox
+								id="descTxt"
+								maxlength="60"
+								width="300px" />
+						</cell>
+					</row>
+					<row valign="top">
+						<cell align="right">
+							<label value="${labels.MESSAGE_TYPE} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<combobox
+							id="messageTypeCmb"
+							width="auto"
+							readonly="true"
+							model="@{globalWinCtrl.messageTypeList}"
+							onAfterRender="self.setSelectedIndex(0)">
+							<comboitem
+								self="@{each=messageType}"
+								label="@{messageType.desc}"
+								value="@{messageType.id}" />
+						</combobox>
+						<cell align="right">
+							<label value="${labels.MESSAGE} : " />
+						</cell>
+						<textbox
+							id="messageTxt"
+							width="300px"
+							multiline="true"
+							maxlength="60"
+							rows="3" />
+					</row>
+					<row valign="top">
+						<cell align="right">
+							<label value="${labels.COMMENT_TYPE} : " />
+							<label
+								value="*"
+								sclass="required-field" />
+						</cell>
+						<combobox
+							id="commentTypeCmb"
+							width="auto"
+							readonly="true"
+							model="@{globalWinCtrl.commentTypeList}"
+							onAfterRender="self.setSelectedIndex(0)">
+							<comboitem
+								self="@{each=commentType}"
+								label="@{commentType.desc}"
+								value="@{commentType.id}" />
+						</combobox>
+						<cell align="right">
+							<label value="${labels.COMMENT} :" />
+						</cell>
+						<textbox
+							id="commentTxt"
+							width="300px"
+							multiline="true"
+							maxlength="60"
+							rows="3" />
+					</row>
+				</rows>
+			</grid>
+		</div>
+	</window>
+</zk>

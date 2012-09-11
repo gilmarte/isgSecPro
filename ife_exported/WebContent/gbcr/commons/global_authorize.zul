@@ -1,0 +1,104 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<!-- CONTENT  -->
+	<window id="global_authorize" self="@{define(left)}"
+		title="Global Criteria - AUTHORIZE" contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.AuthorizeControl">
+		<separator class="content-bar" />
+		<hbox pack="stretch" width="100%" align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button id="btn_approve" label="Approve" 
+					image="/images/approve.png" width="96px" sclass="ui-button-med"/>
+				
+				<button id="btn_cancel" label="Cancel" 
+					image="/images/cancel.png" width="96px" sclass="ui-button-med"/>
+				
+				<button id="btn_back" label="Back" sclass="ui-button-med"
+					image="/images/back.png" width="96px" href="/layout/main.zul" />
+				
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+			<grid>
+				<columns>
+					<column width="8%" />
+					<column width="16%" />
+					<column width="8%" />
+					<column width="18%" />
+					<column width="8%" />
+					<column width="18%" />
+					<column width="24%" />
+					
+				</columns>
+				<rows>
+					<row>
+						<cell align="right">
+							<label value="ID : " />
+						</cell>
+						<cell>
+							<textbox id="tbx_search_id" 
+								style="text-transform:uppercase"
+								onChange="self.setValue(self.getValue().toUpperCase().trim());"/>
+						</cell>
+						<cell align="right">
+							<label value="Entity : " />
+						</cell>
+						<cell>
+							<combobox id="cbb_entity"
+								model="@{global_authorizeControl.entityList}" readonly="true"
+								tabindex="7">
+								<comboitem self="@{each=entityType}"
+									label="@{entityType.desc}" value="@{entityType.id}" />
+							</combobox>
+						</cell>
+						<cell align="right">
+							<label value="Action : " />
+						</cell>
+						<cell>
+							<combobox id="cbb_action"
+								model="@{global_authorizeControl.actionList}" readonly="true"
+								tabindex="7">
+								<comboitem self="@{each=actionType}"
+									label="@{actionType.desc}" value="@{actionType.id}" />
+							</combobox>
+						</cell>
+						<cell align="right">
+							<button id="btn_search" label="List" sclass="ui-button-med"
+								image="/images/list.png" width="96px" />
+							<space />
+							<button id="btn_reset" label="Reset" sclass="ui-button-med"
+								image="/images/reset.png" width="96px" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<listbox id="lbx_result" checkmark="true" 
+				multiple="true" mold="paging" pageSize="10"
+				pagingPosition="bottom">
+				<listhead>
+					<listheader label="ID" width="10%" align="center"
+						sort="auto(id)" />
+					<listheader label="Entity Type" width="10%"
+						align="center" sort="auto(entityDesc)" />
+					<listheader label="Action" width="8%" align="center"
+						sort="auto(actionID)" />
+					<listheader label="Maker ID" width="10%"
+						align="center" sort="auto(lastModifierUserID)" />
+					<listheader label="Action Date" width="16%"
+						align="center" sort="auto(dateLastModified)" />
+					<listheader label="Old Value" width="23%"
+						align="center" />
+					<listheader label="New Value" width="23%"
+						align="center" />
+				</listhead>
+			</listbox>
+	</window>
+</zk>

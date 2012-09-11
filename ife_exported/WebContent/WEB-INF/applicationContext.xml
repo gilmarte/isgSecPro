@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
+
+	<bean 
+		id="environmentVariablesConfiguration" 
+		class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+		<property 
+			name="algorithm" 
+			value="PBEWithMD5AndDES" />
+		<property 
+			name="passwordEnvName" 
+			value="APP_ENCRYPTION_PASSWORD" />
+	</bean>
+
+	<bean 
+		id="configurationEncryptor" 
+		class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property 
+			name="config" 
+			ref="environmentVariablesConfiguration" />
+	</bean>
+
+	<bean 
+		id="propertyConfigurer"
+		class="org.jasypt.spring3.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg 
+			ref="configurationEncryptor" />
+		<property 
+			name="location" 
+			value="/WEB-INF/properties/application.properties" />
+	</bean>
+	
+	 <!-- added by GIL for Websphere deployment, comment this out for local deployment -->
+	 <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="jdbc/dataSource"/>    
+      <property name="resourceRef" value="true" />
+      <property name="cache" value="true" />  
+    </bean>
+	  
+	
+    <!--  
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" >
+		<property 
+			name="driverClass" 
+			value="${datasource.driver}" />
+			
+		<property 
+			name="jdbcUrl" 
+			value="${datasource.url}" />
+
+		<property 
+			name="user" 
+			value="${datasource.username}" />
+
+		<property 
+			name="password" 
+			value="${datasource.password}" />
+	</bean>
+	-->
+	 
+
+	<!-- the data source class is recommend to use com.mchange.v2.c3p0.ComboPooledDataSource 
+		in production phase -->
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
+		destroy-method="close"> <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" 
+		/> -->
+
+	<!-- iFrend-DEV -->
+	<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@10.10.10.12:1521:xe" 
+		/> -->
+
+	<!-- iFrend-LOCAL -->
+	<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" 
+		/> -->
+
+	<!-- <property name="user" value="ifrend" /> <property name="password" value="ifrend" 
+		/> </bean> -->
+
+
+
+
+	<!-- class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> -->
+	<bean id="jdbcUserService" class="com.isg.ifrend.security.dao.CustomJdbcDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="passwordEncoder" ref="passwordEncoder" />
+		<property name="saltSource" ref="saltSource" />
+		<property name="enableGroups" value="true" />
+		<property name="enableAuthorities" value="false" />
+		<property name="usersByUsernameQuery">
+			<value>select user_id, pass, enabled, flag from USER_SEC where
+				user_id = ?
+    		</value>
+		</property>
+		<property name="authoritiesByUsernameQuery">
+			<value>select user_id, auth
+				from USER_AUTH where user_id = ?
+    		</value>
+		</property>
+		<property name="groupAuthoritiesByUsernameQuery">
+			<value>
+				select g.group_id, g.description, ga.function_name
+				from
+				TBL_SA_USERGROUP g, TBL_SA_USER_GRP_MAP gm,
+				TBL_SA_SELECTEDFUNCTIONS
+				GA
+				where gm.user_id = ? and
+				g.group_id = ga.group_id and
+				g.group_id =
+				gm.group_id and
+				(g.status = 'ACTIVE' OR (g.status = 'PENDING' and
+				(g.action = 'UPDATE' OR
+				g.action = 'DELETE')))
+			</value>
+		</property>
+		<property name="createUserStatement">
+			<value>
+				insert into USER_SEC values(?, ?, ?, ?)
+    		</value>
+		</property>
+		<property name="deleteUserStatement">
+			<value>
+				delete from USER_SEC where USER_ID = ?
+    		</value>
+		</property>
+		<property name="changePasswordStatement">
+			<value>
+				update USER_SEC set PASS = ? where USER_ID = ?
+    		</value>
+		</property>
+		<property name="enableUserStatement">
+			<value>
+				update USER_SEC set ENABLED = ? where USER_ID = ?
+    		</value>
+		</property>
+		<property name="enableUserFlagStatement">
+			<value>
+				update USER_SEC set FLAG = ? where USER_ID = ?
+    		</value>
+		</property>
+	</bean>
+
+	<!-- <bean id="userDetailsService" class="org.springframework.security.core.userdetails.UserDetailsService" 
+		/> -->
+
+	<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+	<!-- <bean class="com.isg.ifrend.security.DatabasePasswordSecurerBean" init-method="secureDatabase" 
+		depends-on="dataSource"> <property name="dataSource" ref="dataSource" /> 
+		</bean> -->
+
+	<bean
+		class="org.springframework.security.authentication.dao.ReflectionSaltSource"
+		id="saltSource">
+		<property name="userPropertyToUse" value="salt" />
+	</bean>
+
+	<!-- define Hibernate sessionFactory provided by Spring ORM -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- set other Hibernate properties in hibernate.cfg.xml file -->
+		<property name="configLocation" value="/WEB-INF/hibernate.cfg.xml" />
+	</bean>
+
+	<!-- define Hibernate sessionFactory provided by Spring -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- for using annotation @Transaction in DAOs -->
+	<tx:annotation-driven />
+
+	<!-- inject relative DAO and Service beans -->
+
+	<!-- Global Criteria START -->
+	<bean id="selectedDAO" class="com.isg.ifrend.model.dao.SelectedDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="selectedManager" class="com.isg.ifrend.service.SelectedManagerImpl">
+		<property name="selectedDAO" ref="selectedDAO" />
+	</bean>
+
+	<bean id="elementTypesDAO" class="com.isg.ifrend.model.dao.ElementTypesDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="elementTypesManager" class="com.isg.ifrend.service.ElementTypesManagerImpl">
+		<property name="elementTypesDAO" ref="elementTypesDAO" />
+	</bean>
+
+	<bean id="elementFormatsDAO" class="com.isg.ifrend.model.dao.ElementFormatsDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="elementFormatsManager" class="com.isg.ifrend.service.ElementFormatsImpl">
+		<property name="elementFormatsDAO" ref="elementFormatsDAO" />
+	</bean>
+
+	<bean id="dateFormatsDAO" class="com.isg.ifrend.model.dao.DateFormatsDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="dateFormatsManager" class="com.isg.ifrend.service.DateFormatsImpl">
+		<property name="dateFormatsDAO" ref="dateFormatsDAO" />
+	</bean>
+
+	<bean id="globalMaxIDDAO" class="com.isg.ifrend.model.dao.GlobalMaxIDDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="globalMaxIDManager" class="com.isg.ifrend.service.GlobalMaxIDImpl">
+		<property name="globalMaxIDDAO" ref="globalMaxIDDAO" />
+	</bean>
+
+	<bean id="functionMaxIDDAO" class="com.isg.ifrend.model.dao.FunctionMaxIDDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="functionMaxIDManager" class="com.isg.ifrend.service.FunctionMaxIDImpl">
+		<property name="functionMaxIDDAO" ref="functionMaxIDDAO" />
+	</bean>
+
+	<bean id="criteriaMaxIDDAO" class="com.isg.ifrend.model.dao.CriteriaMaxIDDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="criteriaMaxIDManager" class="com.isg.ifrend.service.CriteriaMaxIDManagerImpl">
+		<property name="criteriaMaxIDDAO" ref="criteriaMaxIDDAO" />
+	</bean>
+
+	<bean id="countryDAO" class="com.isg.ifrend.model.dao.CountryDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="countryManager" class="com.isg.ifrend.service.CountryImpl">
+		<property name="countryDAO" ref="countryDAO" />
+	</bean>
+
+	<bean id="functionDAO" class="com.isg.ifrend.model.dao.FunctionDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="functionManager" class="com.isg.ifrend.service.FunctionImpl">
+		<property name="functionDAO" ref="functionDAO" />
+	</bean>
+
+	<bean id="priorityDAO" class="com.isg.ifrend.model.dao.PriorityDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="priorityManager" class="com.isg.ifrend.service.PriorityImpl">
+		<property name="priorityDAO" ref="priorityDAO" />
+	</bean>
+
+	<bean id="languageCodeDAO" class="com.isg.ifrend.model.dao.LanguageCodeDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="languageCodeManager" class="com.isg.ifrend.service.LanguageCodeManagerImpl">
+		<property name="languageCodeDAO" ref="languageCodeDAO" />
+	</bean>
+
+	<bean id="userFieldDAO" class="com.isg.ifrend.model.dao.UserFieldDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userFieldManager" class="com.isg.ifrend.service.UserFieldImpl">
+		<property name="userFieldDAO" ref="userFieldDAO" />
+	</bean>
+
+	<bean id="actionDAO" class="com.isg.ifrend.model.dao.ActionDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="actionManager" class="com.isg.ifrend.service.ActionImpl">
+		<property name="actionDAO" ref="actionDAO" />
+	</bean>
+
+	<bean id="operatorDAO" class="com.isg.ifrend.model.dao.OperatorDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="operatorManager" class="com.isg.ifrend.service.OperatorImpl">
+		<property name="operatorDAO" ref="operatorDAO" />
+	</bean>
+
+	<bean id="criteriaDAO" class="com.isg.ifrend.model.dao.CriteriaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="criteriaManager" class="com.isg.ifrend.service.CriteriaImpl">
+		<property name="criteriaDAO" ref="criteriaDAO" />
+	</bean>
+
+	<bean id="enhancedCriteriaDAO" class="com.isg.ifrend.model.dao.EnhancedCriteriaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="enhancedCriteriaManager" class="com.isg.ifrend.service.EnhancedCriteriaImpl">
+		<property name="enhancedCriteriaDAO" ref="enhancedCriteriaDAO" />
+	</bean>
+	
+		<bean id="historycriteriaDAO" class="com.isg.ifrend.model.dao.HistoryCriteriaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="historycriteriaManager" class="com.isg.ifrend.service.HistoryCriteriaManagerImpl">
+		<property name="historycriteriaDAO" ref="historycriteriaDAO" />
+	</bean>
+
+	<bean id="criteriaDAO2" class="com.isg.ifrend.model.dao.impl.CriteriaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="criteriaManager2" class="com.isg.ifrend.service.impl.GlobalManagerImpl">
+		<property name="globalDAO" ref="criteriaDAO2" />
+	</bean>
+	
+
+	<bean id="elementDAO" class="com.isg.ifrend.model.dao.impl.ElementDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="elementManager" class="com.isg.ifrend.service.impl.GlobalManagerImpl">
+		<property name="globalDAO" ref="elementDAO" />
+	</bean>
+
+	<bean id="mliDAO" class="com.isg.ifrend.model.dao.impl.MliDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mliManager" class="com.isg.ifrend.service.impl.GlobalManagerImpl">
+		<property name="globalDAO" ref="mliDAO" />
+	</bean>
+
+	<bean id="scriptDAO" class="com.isg.ifrend.model.dao.impl.ScriptDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="scriptManager" class="com.isg.ifrend.service.impl.GlobalManagerImpl">
+		<property name="globalDAO" ref="scriptDAO" />
+	</bean>
+
+	<bean id="labelDAO" class="com.isg.ifrend.model.dao.impl.LabelDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="labelManager" class="com.isg.ifrend.service.impl.GlobalManagerImpl">
+		<property name="globalDAO" ref="labelDAO" />
+	</bean>
+
+	<bean id="codeTypeDAO" class="com.isg.ifrend.model.dao.impl.CodeTypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="codeTypeManager" class="com.isg.ifrend.service.impl.GlobalManagerImpl">
+		<property name="globalDAO" ref="codeTypeDAO" />
+	</bean>
+
+	<bean id="genericDao" class="com.isg.ifrend.model.dao.impl.GenericDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="genericManager" class="com.isg.ifrend.service.impl.GenericManagerImpl">
+		<property name="genericDao" ref="genericDao" />
+	</bean>
+	<!-- Global Criteria END -->
+
+
+	<!-- Security Administrator START -->
+	<bean id="functionsDAO" class="com.isg.ifrend.model.dao.FunctionsDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="functionsManager" class="com.isg.ifrend.service.FunctionsManagerImpl">
+		<property name="functionsDAO" ref="functionsDAO" />
+	</bean>
+
+	<bean id="selectedfunctionsDAO" class="com.isg.ifrend.model.dao.SelectedFunctionsDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="selectedfunctionsManager" class="com.isg.ifrend.service.SelectedFunctionsManagerImpl">
+		<property name="selectedfunctionsDAO" ref="selectedfunctionsDAO" />
+	</bean>
+
+	<bean id="saselectedfunctionsDAO" class="com.isg.ifrend.model.dao.SaSelectedFunctionsDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="saselectedfunctionsManager" class="com.isg.ifrend.service.SaSelectedFunctionsManagerImpl">
+		<property name="saselectedfunctionsDAO" ref="saselectedfunctionsDAO" />
+	</bean>
+
+	<bean id="tmpsausergroupDAO" class="com.isg.ifrend.model.dao.TmpSaUserGroupDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="tmpsausergroupManager" class="com.isg.ifrend.service.TmpSaUserGroupManagerImpl">
+		<property name="tmpsausergroupDAO" ref="tmpsausergroupDAO" />
+	</bean>
+
+	<bean id="sausergroupDAO" class="com.isg.ifrend.model.dao.SaUserGroupDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sausergroupManager" class="com.isg.ifrend.service.SaUserGroupManagerImpl">
+		<property name="sausergroupDAO" ref="sausergroupDAO" />
+	</bean>
+
+	<bean id="sausergrouphistoryDAO" class="com.isg.ifrend.model.dao.SaUserGroupHistoryDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sausergrouphistoryManager" class="com.isg.ifrend.service.SaUserGroupHistoryManagerImpl">
+		<property name="sausergrouphistoryDAO" ref="sausergrouphistoryDAO" />
+	</bean>
+
+	<bean id="userDAO" class="com.isg.ifrend.model.dao.UserDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userManager" class="com.isg.ifrend.service.UserManagerImpl">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
+
+	<bean id="tempUserDAO" class="com.isg.ifrend.model.dao.TempUserDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="histUserDAO" class="com.isg.ifrend.model.dao.HistUserDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="tempUserManager" class="com.isg.ifrend.service.TempUserManagerImpl">
+		<property name="tempUserDAO" ref="tempUserDAO" />
+		<property name="histUserDAO" ref="histUserDAO" />
+	</bean>
+	<bean id="histUserManager" class="com.isg.ifrend.service.HistUserManagerImpl">
+		<property name="histUserDAO" ref="histUserDAO" />
+	</bean>
+
+	<bean id="tempUserOrgDAO" class="com.isg.ifrend.model.dao.TempUserOrganizationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="histUserOrgDAO" class="com.isg.ifrend.model.dao.HistUserOrganizationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="tempUserOrgManager" class="com.isg.ifrend.service.TempUserOrganizationManagerImpl">
+		<property name="tempUserOrgDAO" ref="tempUserOrgDAO" />
+		<property name="histUserOrgDAO" ref="histUserOrgDAO" />
+	</bean>
+	<bean id="histUserOrgManager" class="com.isg.ifrend.service.HistUserOrganizationManagerImpl">
+		<property name="histUserOrgDAO" ref="histUserOrgDAO" />
+	</bean>
+
+	<bean id="userOrgDAO" class="com.isg.ifrend.model.dao.UserOrganizationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userOrgManager" class="com.isg.ifrend.service.UserOrganizationManagerImpl">
+		<property name="userOrgDAO" ref="userOrgDAO" />
+	</bean>
+
+	<bean id="businessEntityDAO" class="com.isg.ifrend.model.dao.BusinessEntityDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="businessEntityManager" class="com.isg.ifrend.service.BusinessEntityManagerImpl">
+		<property name="businessEntityDAO" ref="businessEntityDAO" />
+	</bean>
+
+	<!-- Security Administrator END -->
+
+</beans>

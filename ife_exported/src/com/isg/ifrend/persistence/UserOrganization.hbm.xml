@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07 23, 12 10:24:17 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.isg.ifrend.model.bean.UserOrganization" table="TBL_SA_USER_ORG">
+  <id name="orgID" type="java.lang.String">
+   <column name="ORG_ID"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="orgDesc" type="java.lang.String">
+   <column name="ORG_DESC"/>
+  </property>
+  <property generated="never" lazy="false" name="disposeAdjLimit" type="java.lang.String">
+   <column name="DISPOSE_ADJ_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="creditLimitC1" type="java.lang.String">
+   <column name="CR_LIM_C1"/>
+  </property>
+  <property generated="never" lazy="false" name="creditLimitC2" type="java.lang.String">
+   <column name="CR_LIM_C2"/>
+  </property>
+  <property generated="never" lazy="false" name="chargeBackLimit" type="java.lang.String">
+   <column name="CHARGE_BACK_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="retrievalAmount" type="java.lang.String">
+   <column name="RETRIEVAL_AMT"/>
+  </property>
+  <property generated="never" lazy="false" name="fraudAmount" type="java.lang.String">
+   <column name="FRAUD_AMT"/>
+  </property>
+  <property generated="never" lazy="false" name="feeAmount" type="java.lang.String">
+   <column name="FEE_AMT"/>
+  </property>
+  <property generated="never" lazy="false" name="permCreditLimit" type="java.lang.String">
+   <column name="PERM_CR_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="tempCreditLimit" type="java.lang.String">
+   <column name="TEMP_CR_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="feeAdjLimit" type="java.lang.String">
+   <column name="FEE_ADJ_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="lateChargeAdjLimit" type="java.lang.String">
+   <column name="LATE_CHARGE_ADJ_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="balAdjLimit" type="java.lang.String">
+   <column name="BAL_ADJ_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="transactionLimit" type="java.lang.String">
+   <column name="TXN_LIM"/>
+  </property>
+  <property generated="never" lazy="false" name="transactionCode" type="java.lang.String">
+   <column name="TXN_CODE"/>
+  </property>
+  <property generated="never" lazy="false" name="status" type="integer">
+   <column name="STATUS_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="action" type="integer">
+   <column name="ACTION_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="createdBy" type="java.lang.String">
+   <column name="CREATED_BY"/>
+  </property>
+  <property generated="never" lazy="false" name="dateCreated" type="java.util.Date">
+   <column name="DATE_CREATED"/>
+  </property>
+  <property generated="never" lazy="false" name="lastModifiedBy" type="java.lang.String">
+   <column name="MODIFIED_BY"/>
+  </property>
+  <property generated="never" lazy="false" name="dateLastModified" type="java.util.Date">
+   <column name="DATE_MODIFIED"/>
+  </property>
+  <property generated="never" lazy="false" name="approvedBy" type="java.lang.String">
+   <column name="APPROVED_BY"/>
+  </property>
+  <property generated="never" lazy="false" name="dateApproved" type="java.util.Date">
+   <column name="DATE_APPROVED"/>
+  </property>
+ </class>
+</hibernate-mapping>

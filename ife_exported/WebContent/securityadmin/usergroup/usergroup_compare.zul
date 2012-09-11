@@ -1,0 +1,126 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" 
+arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<window id="userGroupComparePage" self="@{define(left)}"
+	title="USER GROUP - COMPARE" border="normal" width="100%" height="100%"
+	apply="com.isg.ifrend.view.control.UserGroupComparePageViewCtrl">
+	<!-- Block Fields Start -->
+	<groupbox closable="false" mold="3d" width="100%" height="400px">
+		<div>
+			<hbox pack="right" width="100%" spacing="2">
+				<button id="btn_back_top" label="Back" image="/images/back.png" width="80px" />
+			</hbox>
+		</div>
+		<separator/>
+		<panel border="normal" width="100%"
+			height="360px">
+			<panelchildren>
+				<hbox spacing="0" width="100%" height="100%">
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="Old Record"
+											width="20%" />
+										<column label="" />
+									</columns>
+									<rows>
+										<row>
+											<label value="Group ID:" />
+											<label id="t_group_id" />
+										</row>
+										<row>
+											<label value="Description:" />
+											<label id="t_description" />
+										</row>										
+										<row>
+											<label value="Status" />
+											<label id="t_status" />
+										</row>
+										<row visible="false">
+											<label value="Action" />
+											<label id="t_action" />
+										</row>
+									</rows>
+								</grid>
+								</row>
+								<row>
+								<listbox id="src" rows="0"
+									multiple="true" height="170px"
+									model="@{userGroupComparePage.lml_selectedfunctions }">
+									<listhead width="100%">
+										<listheader
+											label="Selected Functions" />
+									</listhead>
+									<listitem
+										self="@{each='selectedfunctions' }"
+										value="@{selectedfunctions }">
+										<listcell
+											label="@{selectedfunctions.description}" />
+									</listitem>
+								</listbox>
+							</row>
+						</rows>
+					</grid>
+					<splitter id="s1"/>
+					<grid>
+						<rows>
+							<row>
+								<grid>
+									<columns width="50%">
+										<column label="Master Record"
+											width="20%" />
+										<column label="" />
+									</columns>
+									<rows>
+										<row>
+											<label value="Group ID:" />
+											<label id="m_group_id" />
+										</row>
+										<row>
+											<label value="Description:" />
+											<label id="m_description" />
+										</row>										
+										<row>
+											<label value="Status" />
+											<label id="m_status" />
+										</row>
+										<row visible="false">
+											<label value="Action" />
+											<label id="m_action" />
+										</row>
+									</rows>
+								</grid>
+							</row>
+							<row>
+								<listbox id="dst" checkmark="false"
+									rows="0" multiple="true" height="170px"
+									model="@{userGroupComparePage.lml_saselectedfunctions }">
+									<listhead>
+										<listheader
+											label="Selected Functions" />
+									</listhead>
+									<listitem
+										self="@{each='saselectedfunctions' }"
+										value="@{selectedfunctions }">
+										<listcell
+											label="@{saselectedfunctions.description}" />
+									</listitem>
+								</listbox>
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+			</panelchildren>
+		</panel>
+		<separator />
+		<div>
+			<hbox pack="right" width="100%" spacing="2">
+				<button id="btn_back_foot" label="Back" image="/images/back.png" width="80px" />
+			</hbox>
+		</div>
+	</groupbox>
+</window>

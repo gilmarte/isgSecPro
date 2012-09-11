@@ -1,0 +1,235 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<window
+		id="globalWin"
+		self="@{define(left)}"
+		title="Element - VIEW"
+		contentStyle="overflow:auto"
+		apply="com.isg.ifrend.view.control.ElementViewComposer">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="updateTopBtn"
+					label="${labels.UPDATE}"
+					image="../../images/update.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="deleteTopBtn"
+					label="${labels.DELETE}"
+					image="../../images/delete.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="approveTopBtn"
+					label="${labels.APPROVE}"
+					image="../../images/approve.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="rejectTopBtn"
+					label="${labels.REJECT}"
+					image="../../images/reject.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="editRequestTopBtn"
+					label="${labels.EDIT}"
+					image="../../images/update.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="cancelRequestTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					sclass="ui-button-med"
+					width="96px" />
+				<button
+					id="okTopBtn"
+					label="${labels.OK}"
+					image="../../images/ok.png"
+					sclass="ui-button-med"
+					width="96px" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<hbox
+			pack="right"
+			width="100%" />
+		<grid>
+			<columns>
+				<column width="15%" />
+				<column width="25%" />
+				<column width="10%" />
+				<column width="50%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="${labels.ELEMENT_ID} : " />
+					</cell>
+					<cell colspan="3">
+						<label id="idLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.ELEMENT_TYPE} :" />
+					</cell>
+					<label id="elementTypeLbl" />
+					<cell align="right">
+						<label value="${labels.DESCRIPTION} :" />
+					</cell>
+					<label id="descLbl" />
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.FORMAT} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="formatLbl" />
+					</cell>
+				</row>
+				<row id="lengthRow">
+					<cell align="right">
+						<label value="${labels.LENGTH} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="lengthLbl" />
+					</cell>
+				</row>
+				<row id="decimalRow">
+					<cell align="right">
+						<label value="${labels.DECIMAL} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="decimalLbl" />
+					</cell>
+				</row>
+				<row id="dateFormatRow">
+					<cell align="right">
+						<label value="${labels.DATE_FORMAT} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="dateFormatLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.ALLOWED_OPERATORS} :" />
+					</cell>
+					<cell colspan="3"></cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.EQUALS} : " />
+					</cell>
+					<cell colspan="3">
+						<label id="equalsLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.NOT_EQUALS} : " />
+					</cell>
+					<cell colspan="3">
+						<label id="notEqualsLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.GREATER} : " />
+					</cell>
+					<cell colspan="3">
+						<label id="greaterLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.GREATER_EQUALS} : " />
+					</cell>
+					<cell colspan="3">
+						<label id="greaterEqualsLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.LESSER} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="lesserLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.LESSER_EQUALS} :" />
+					</cell>
+					<cell colspan="3">
+						<label id="lesserEqualsLbl" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<grid>
+			<columns>
+				<column width="10%" />
+				<column width="30%" />
+				<column width="10%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="${labels.STATUS} : " />
+					</cell>
+					<label id="statusLbl" />
+					<cell align="right">
+						<label value="${labels.ACTION} : " />
+					</cell>
+					<label id="actionLbl" />
+				</row>
+				<row>
+					<cell align="right">
+						<label value="${labels.CREATED_BY} : " />
+					</cell>
+					<label id="creatorLbl" />
+					<cell align="right">
+						<label value="${labels.DATE_CREATED} : " />
+					</cell>
+					<label id="dateCreatedLbl" />
+				</row>
+				<row id="approverRow">
+					<cell align="right">
+						<label value="${labels.APPROVED_BY} : " />
+					</cell>
+					<label id="approverLbl" />
+					<cell align="right">
+						<label value="${labels.DATE_APPROVED} : " />
+					</cell>
+					<label id="dateApprovedLbl" />
+				</row>
+				<row id="modifierRow">
+					<cell align="right">
+						<label value="${labels.LAST_MODIFIED_BY} : " />
+					</cell>
+					<label id="modifierLbl" />
+					<cell align="right">
+						<label value="${labels.DATE_LAST_MODIFIED} : " />
+					</cell>
+					<label id="dateModifiedLbl" />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

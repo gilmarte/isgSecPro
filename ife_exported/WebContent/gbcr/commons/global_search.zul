@@ -1,0 +1,158 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<!-- CONTENT -->
+	<window
+		id="global_search"
+		self="@{define(left)}"
+		title="Global Criteria - SEARCH"
+		apply="com.isg.ifrend.view.control.SearchControl">
+		<separator class="content-bar" />
+		<hbox
+			pack="right"
+			width="100%">
+			<button
+				id="btn_export"
+				sclass="ui-button-med"
+				label="Export to Excel"
+				image="/images/excel.png"
+				width="96px" />
+			<space />
+			<button
+				id="btn_delete"
+				label="Delete"
+				sclass="ui-button-med"
+				image="/images/delete.png"
+				width="96px" />
+			<button
+				id="btn_back"
+				label="Back"
+				sclass="ui-button-med"
+				image="/images/back.png"
+				width="96px"
+				href="/layout/main.zul" />
+		</hbox>
+		<separator />
+		<grid>
+			<columns>
+				<column width="4%" />
+				<column width="12%" />
+				<column width="7%" />
+				<column width="18%" />
+				<column width="5%" />
+				<column width="12%" />
+				<column width="5%" />
+				<column width="15%" />
+				<column width="22%" />
+			</columns>
+			<rows>
+				<row>
+					<cell align="right">
+						<label value="ID : " />
+					</cell>
+					<cell>
+						<textbox
+							id="tbx_search_id"
+							width="100px"
+							style="text-transform:uppercase"
+							onChange="self.setValue(self.getValue().toUpperCase().trim());" />
+					</cell>
+					<cell align="right">
+						<label value="Description : " />
+					</cell>
+					<cell>
+						<textbox
+							id="tbx_search_desc"
+							width="160px" />
+					</cell>
+					<cell align="right">
+						<label value="Entity : " />
+					</cell>
+					<cell>
+						<combobox
+							id="cbb_entity"
+							model="@{global_searchControl.entityList}"
+							readonly="true"
+							width="100px"
+							tabindex="7">
+							<comboitem
+								self="@{each=entityType}"
+								label="@{entityType.desc}"
+								value="@{entityType.id}" />
+						</combobox>
+					</cell>
+					<cell align="right">
+						<label value="Status : " />
+					</cell>
+					<cell>
+						<combobox
+							id="cbb_status"
+							model="@{global_searchControl.statusList}"
+							readonly="true"
+							tabindex="7"
+							width="130px">
+							<comboitem
+								self="@{each=activeEntitiesStatusType}"
+								label="@{activeEntitiesStatusType.desc}"
+								value="@{activeEntitiesStatusType.id}" />
+						</combobox>
+					</cell>
+					<cell align="center">
+						<button
+							id="btn_search"
+							label="List"
+							sclass="ui-button-med"
+							image="/images/list.png"
+							width="96px" />
+						<button
+							id="btn_reset"
+							label="Reset"
+							sclass="ui-button-med"
+							image="/images/reset.png"
+							width="96px" />
+						
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<listbox
+			id="lbx_result"
+			checkmark="true"
+			multiple="true"
+			mold="paging"
+			pageSize="10"
+			pagingPosition="bottom">
+			<listhead>
+				<listheader
+					label="ID"
+					width="10%"
+					align="center"
+					sort="auto(id)" />
+				<listheader
+					label="Description"
+					width="48%"
+					align="center"
+					sort="auto(desc)" />
+				<listheader
+					label="Status"
+					width="18%"
+					align="center"
+					sort="auto(statusID)" />
+				<listheader
+					label="Maker ID"
+					width="10%"
+					align="center"
+					sort="auto(lastModifierUserID)" />
+				<listheader
+					label="Action Date"
+					width="14%"
+					align="center"
+					sort="auto(dateLastModified)" />
+			</listhead>
+		</listbox>
+	</window>
+</zk>

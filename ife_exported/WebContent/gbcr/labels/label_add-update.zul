@@ -1,0 +1,109 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?page title="Global Criteria - Label" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<window
+		id="globalWin"
+		title="Label - ADD"
+		apply="com.isg.ifrend.view.control.LabelAddUpdateComposer"
+		self="@{define(left)}">
+		<separator class="content-bar" />
+		<hbox
+			pack="stretch"
+			width="100%"
+			align="end">
+			<cell sclass="msg" align="left">
+				<image id="messageImg" />
+				<label
+					id="messageLbl" />
+			</cell>
+			<cell align="right">
+				<button
+					id="submitTopBtn"
+					label="${labels.SUBMIT}"
+					image="../../images/ok.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="resetTopBtn"
+					label="${labels.RESET}"
+					image="../../images/reset.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="cancelTopBtn"
+					label="${labels.CANCEL}"
+					image="../../images/cancel.png"
+					width="96px"
+					sclass="ui-button-med" />
+				<button
+					id="backTopBtn"
+					label="${labels.BACK}"
+					image="../../images/back.png"
+					width="96px"
+					sclass="ui-button-med" />
+			</cell>
+		</hbox>
+		<separator class="content-bar" />
+		<grid>
+			<columns>
+				<column width="11%" />
+			</columns>
+			<rows>
+				<row id="idRow">
+					<cell align="right">
+						<label value="${labels.LABEL_ID} :" />
+					</cell>
+					<cell>
+						<label id="idLbl" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Label Name : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell>
+						<textbox
+							id="labelIdTxt"
+							maxlength="20"
+							width="190px" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Language Code : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell>
+						<combobox
+							id="languageCodeCmb"
+							readonly="true"
+							width="280px"
+							onAfterRender="self.setSelectedIndex(0)" />
+					</cell>
+				</row>
+				<row>
+					<cell align="right">
+						<label value="Native String : " />
+						<label
+							value="*"
+							sclass="required-field" />
+					</cell>
+					<cell>
+						<textbox
+							id="nativeStringTxt"
+							maxlength="60"
+							width="550px" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

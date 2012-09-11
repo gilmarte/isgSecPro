@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07 25, 12 8:37:14 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.isg.ifrend.model.bean.BusinessEntity" table="REF_BUS_ENTITY">
+  <id name="bus_ent_code" type="java.lang.String">
+   <column name="BUS_ENTITY"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="bus_ent_desc" type="java.lang.String">
+   <column name="BUS_ENTITY_DESC"/>
+  </property>
+ </class>
+</hibernate-mapping>

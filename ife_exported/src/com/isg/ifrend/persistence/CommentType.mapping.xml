@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="CommentType" table="ref_commenttypes">
+		<id name="commenttype_id" column="ct_commenttype_id_pk" type="integer">
+			<generator class="increment" />
+		</id>
+
+		<property name="commenttype_desc" column="ct_commenttype_desc"
+			type="string" />
+	</class>
+</hibernate-mapping>

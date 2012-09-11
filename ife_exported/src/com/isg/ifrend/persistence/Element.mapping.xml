@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.isg.ifrend.model.bean">
+	<class name="Element" table="mst_elements">
+		<id name="element_id" column="el_element_id_pk" type="string">
+			<generator class="assigned" />
+		</id>
+		<property name="elementtype_id" column="el_elementtype_id_fk" type="integer" />
+		<property name="element_format_id" column="el_elementformat_id_fk" type="integer" />
+		<property name="element_length" column="el_element_length" type="integer" />
+		<property name="element_decimal" column="el_element_decimal" type="integer" />
+		<property name="element_dateformat_id" column="el_element_dateformat_id_fk" type="integer" />
+		<property name="element_desc" column="el_element_desc" type="string" />
+		<property name="element_operator_eq" column="el_element_operator_eq" type="string" />
+		<property name="element_operator_ne" column="el_element_operator_ne" type="string" />
+		<property name="element_operator_gt" column="el_element_operator_gt" type="string" />
+		<property name="element_operator_ge" column="el_element_operator_ge" type="string" />
+		<property name="element_operator_lt" column="el_element_operator_lt" type="string" />
+		<property name="element_operator_le" column="el_element_operator_le" type="string" />
+		<property name="statusID" column="el_element_status_id" type="integer" />
+		<property name="actionID" column="el_element_action_id" type="integer" />
+		<property name="creatorUserID" column="el_element_userid_fk" type="string" />
+		<property name="dateCreated" column="el_element_date_created" type="java.sql.Timestamp" />
+		<property name="approverUserID" column="el_element_approver_userid_fk" type="string" />
+		<property name="dateApproved" column="el_element_date_approved" type="java.sql.Timestamp" />
+		<property name="lastModifierUserID" column="el_element_modified_userid_fk" type="string" />
+		<property name="dateLastModified" column="el_element_last_date_modified" type="java.sql.Timestamp" />
+	</class>
+</hibernate-mapping>

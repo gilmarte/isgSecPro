@@ -1,0 +1,18 @@
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<div>
+		<?page id="accessDenied" title="Access Denied"?>
+		<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/main.zul" ?>
+		<window id="setPassword" border="normal" width="500px" position="center" mode="overlapped" >
+			<!-- apply="com.isg.ifrend.security.control.SetPasswordControl"> -->
+			<groupbox>
+				<separator />
+				<label value="Access is denied." style="font-size:30"/>
+				<separator />
+				<label value="You have insufficient role/s to access this page. Kindly contact your administrator if you need access to this page." />
+				<separator />
+			</groupbox>
+		</window>
+	</div>
+</zk>

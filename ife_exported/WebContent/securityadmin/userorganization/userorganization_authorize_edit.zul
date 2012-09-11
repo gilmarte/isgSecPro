@@ -1,0 +1,205 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/salayout/security.zul" ?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<style src="/style/style.css" />
+	<window id="userorganization_auth_edit" self="@{define(left)}"
+		title="USER ORGANIZATION - AUTHORIZE" border="normal" width="100%" height="100%"
+		apply="com.isg.ifrend.view.control.UserOrganizationAuthorizeEditVM">
+		<div id="divsubmit_top">
+			<hbox pack="right" width="100%">
+				<cell width="50%" align="left">
+					<image id="img_info" />
+					<label id="lb_info" />
+				</cell>
+				<cell width="50%" align="right">
+					<button id="btn_approve_top"
+						label="${labels.APPROVE}" width="80px" visible="false"
+						image="../../images/approve.png" />
+					<button id="btn_update_top" label="${labels.UPDATE}"
+						width="80px" visible="false" image="../../images/update.png" />
+					<button id="btn_submit_top" label="${labels.SUBMIT}"
+						width="80px" visible="false" image="../../images/submit.png" />
+					<space />
+					<button id="btn_reject_top" label="${labels.REJECT}"
+						width="80px" visible="false" image="../../images/reject.png" />
+					<button id="btn_reset_top" label="${labels.RESET}"
+						width="80px" visible="false" image="../../images/reset.png" />
+					<button id="btn_cancel_top" label="${labels.CANCEL}"
+						width="80px" visible="false" image="../../images/cancel.png" />
+					<space />
+					<button id="btn_back_top" label="${labels.BACK}"
+						width="80px" image="../../images/back.png" />
+				</cell>
+			</hbox>
+		</div>
+		<separator />
+		<groupbox width="50%" >
+			<div>
+				<grid sizedByContent="false">
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="${labels.ORGANIZATION_ID} : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<textbox id="tbx_org_id"  width="180px" readonly="true" maxlength="8"/>
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.ORGANIZATION_DESCRIPTION} : " />
+							</cell>
+							<textbox id="tbx_org_desc"  multiline="true" readonly="true"
+								height="50" width="300" maxlength="100" mold="rounded" />
+						</row>
+					</rows>
+				</grid>
+			</div>
+		</groupbox>
+		<separator />
+		<groupbox>
+			<div>
+				<grid sizedByContent="false">
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="${labels.DISPOSE_ADJUSTMENT_LIMIT} : "
+									style="font-weight:bold;text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_dispose_adj_lim" width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.C1_CREDIT_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_cr_lim_c1"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.C2_CREDIT_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_cr_lim_c2"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.CHARGE_BACK_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_charge_back_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.RETRIEVAL_AMOUNT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_retrieval_amt"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.FRAUD_AMOUNT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_fraud_amt"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.FEE_AMOUNT}  : "
+									style="font-weight:bold;text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_fee_amt"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.PERMANENT_CREDIT_LIMIT}  : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_perm_cr_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.TEMPORARY_CREDIT_LIMIT}  : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_temp_cr_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.FEE_ADJUSTMENT_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_fee_adj_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.LATE_CHARGE_ADJUSTMENT_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_late_charge_adj_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.BALANCE_ADJUSTMENT_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_bal_adj_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="${labels.TRANSACTION_LIMIT} : "
+									style="text-indent:45px" />
+							</cell>
+							<decimalbox id="dbx_txn_lim"  width="180px" readonly="true" maxlength="20"
+								format="###.##" mold="rounded" />
+						<!-- </row>
+						<row> -->
+							<cell align="right">
+								<label value="${labels.TRANSACTION_CODE} : "
+									style="text-indent:45px" />
+							</cell>
+							<textbox id="tbx_txn_code" width="180px" readonly="true" maxlength="20" mold="rounded" />
+						</row>
+						<row>
+							<label
+								value="${labels.DIRECTION_SUBMIT}"
+								style="font-style:italic" />
+						</row>
+					</rows>
+				</grid>
+			</div>
+		</groupbox>
+		<separator />
+		<div id="divsubmit_foot">
+			<hbox pack="right" width="100%">
+				<button id="btn_approve_foot" label="${labels.APPROVE}" width="80px" visible="false"
+					image="../../images/approve.png" />
+				<button id="btn_reject_foot" label="${labels.REJECT}" width="80px" visible="false"
+					image="../../images/reject.png" />
+				<button id="btn_update_foot" label="${labels.UPDATE}" width="80px" visible="false"
+					image="../../images/update.png" />
+				<button id="btn_submit_foot" label="${labels.SUBMIT}" width="80px" visible="false"
+					image="../../images/submit.png" />
+				<button id="btn_reset_foot" label="${labels.RESET}" width="80px" visible="false"
+					image="../../images/reset.png" />
+				<button id="btn_cancel_foot" label="${labels.CANCEL}" width="80px" visible="false"
+					image="../../images/cancel.png" />
+				<button id="btn_back_foot" label="${labels.BACK}" width="80px"
+					image="../../images/back.png" />
+				</hbox>
+			</div>
+	</window>
+</zk>

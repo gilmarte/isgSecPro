@@ -1,0 +1,17 @@
+<window id="GlobalHeaderPage" apply="com.isg.ifrend.security.control.GlobalHeaderPageViewCtrl">
+	<vlayout>
+		<separator class="header-bar" />
+		<div>
+			<div style="float:right">
+				<label id="lblUser"  sclass="main-layout-header-user-label"
+					value="Welcome" />										
+				<separator></separator>
+				<a href="#" id="btn_back" label="Back" sclass="main-layout-header-logout-label"/>				
+				<!-- button id="btn_logout" label="Logout"/-->
+			</div>
+			<image sclass="main-layout-header-img"
+				src="/images/isg_logo.png" />
+			<label sclass="main-layout-header-label" value="iFREND" />
+		</div>
+	</vlayout>
+</window>

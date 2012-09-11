@@ -1,0 +1,476 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/main.zul"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/images/favicon.ico"?>
+<zk>
+	<!-- CONTENT  -->
+	<window id="criteria_add" contentStyle="overflow:auto;"
+		self="@{define(left)}" width="100%"
+		apply="com.isg.ifrend.view.control.CriteriaAddControl"
+		title="CRITERIA - ADD">
+		<groupbox contentStyle="overflow:auto;">
+		<div style="overflow:auto;">
+		<separator />
+			<hbox pack="right" width="100%" >
+				<cell colspan="5" align="left">
+						<bandbox id="bbox_search_id"
+									mold="rounded" autodrop="true">
+									<bandpopup>
+									<listbox id="lbx_search_id"
+											height="250px" width="300px" mold="paging" autopaging="true"
+											onSelect="bbox_search_id.value=self.selectedItem.label; bbox_search_id.close();">
+									<listhead>
+									<listheader label="ID"
+											width="100px" align="center" />
+									<listheader
+											label="Description" width="190px" align="center" />
+									</listhead>
+								</listbox>
+							</bandpopup>
+						</bandbox>
+					<space />
+				<button id="btn_copy"
+					image="/images/copy.png" width="96px" label="Copy" />
+			</cell>
+				<button id="btn_save_top" label="Submit" width="96px"
+					image="/images/submit.png" />
+				<button
+					onClick='Executions.getCurrent().sendRedirect("")'
+					image="/images/reset.png" width="96px" label="Reset" />
+				<button id="btn_cancel_top" label="Back"
+					image="/images/back.png" width="96px"
+					href="/layout/main.zul" />
+			</hbox>
+			<separator />
+			<div>
+				<grid>
+					<columns>
+						<column width="10%" />
+						<column width="40%" />
+						<column width="10%" />
+						<column width="40%" />
+					</columns>
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="Country : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_country_code"
+									model="@{criteria_addControl.countryList}"
+									value="@{criteria_addControl.tempCriteria.country.country_code}"
+									selectedItem="@{criteria_addControl.tempCriteria.country.country_code}"
+									readonly="true" tabindex="1">
+									<comboitem self="@{each=country}"
+										label="@{country.country_desc}"
+										value="@{country.country_code}" />
+								</combobox>
+							</cell>
+							<cell align="right">
+								<label value="Function :" />
+							</cell>
+							<cell>
+								<label id="function_type"
+									value="Criteria" />
+							</cell>
+							
+						</row>
+						<row>
+							<cell align="right">
+								<label value="Function : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_function_code"
+									model="@{criteria_addControl.functionList}"
+									value="@{criteria_addControl.tempCriteria.function.function_code}"
+									selectedItem="@{criteria_addControl.tempCriteria.function.function_code}"
+									readonly="true" tabindex="2">
+									<comboitem self="@{each=function}"
+										label="@{function.function_desc}"
+										value="@{function.function_code}" />
+								</combobox>
+							</cell>
+							<cell align="right">
+								<label value="User Field : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_userfield"
+									model="@{criteria_addControl.userFieldList}"
+									value="@{criteria_addControl.tempCriteria.userField.userFieldID}"
+									selectedItem="@{criteria_addControl.tempCriteria.userField.userFieldID}"
+									readonly="true" tabindex="4">
+									<comboitem self="@{each=userField}"
+										label="@{userField.userFieldDesc}"
+										value="@{userField.userFieldID}" />
+								</combobox>
+							</cell>
+							<cell align="right" />
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right">
+								<label value="Priority : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_priority"
+									model="@{criteria_addControl.priorityList}"
+									value="@{criteria_addControl.tempCriteria.priority.priorityID}"
+									selectedItem="@{criteria_addControl.tempCriteria.priority.priorityID}"
+									readonly="true" tabindex="3">
+									<comboitem self="@{each=priority}"
+										label="@{priority.priorityDesc}"
+										value="@{priority.priorityID}" />
+								</combobox>
+							</cell>
+							<cell align="right">
+								<label value="Description :" />
+							</cell>
+							<cell colspan="2">
+								<textbox id="tbx_description"
+									width="300px" height="30" multiline="true" maxlength="60"
+									tabindex="5" />
+
+							</cell>
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid>
+					<columns>
+						<column width="10%" />
+						<column width="15%" />
+						<column width="10%" />
+						<column width="15%" />
+						<column width="10%" />
+						<column width="15%" />
+						<column width="10%" />
+						<column width="15%" />
+					</columns>
+				
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="Pass Action : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+
+							<cell>
+								<combobox id="cbb_passaction"
+									model="@{criteria_addControl.actionPassList}"
+									value="@{criteria_addControl.tempCriteria.action.action_id}"
+									selectedItem="@{criteria_addControl.tempCriteria.action.action_id}"
+									readonly="true" tabindex="6">
+									<comboitem self="@{each=action}"
+										label="@{action.action_desc}" value="@{action.action_id}" />
+								</combobox>
+							</cell>
+
+							<cell align="right">
+								<label value="Message Type : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_pass_messagetype"
+									model="@{criteria_addControl.messageTypeList}" readonly="true"
+									tabindex="7">
+									<comboitem
+										self="@{each=messageType}" label="@{messageType.desc}"
+										value="@{messageType.id}" />
+								</combobox>
+							</cell>
+
+							<cell align="right">
+								<label value="Letter Code : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_pass_lettercode"
+									model="@{criteria_addControl.letterCodeList}"
+									value="@{criteria_addControl.tempCriteria.codeType.codeTypeID}"
+									selectedItem="@{criteria_addControl.tempCriteria.codeType.codeTypeID}"
+									readonly="true" tabindex="8">
+									<comboitem self="@{each=code}"
+										label="@{code.codeForDisplay}"
+										value="@{code.codeID}" />
+								</combobox>
+							</cell>
+
+							<cell align="right">
+								<label value="Comment Type : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell colspan="3">
+								<combobox id="cbb_pass_commenttype"
+									model="@{criteria_addControl.commentTypeList}" readonly="true"
+									tabindex="9">
+									<comboitem
+										self="@{each=commentType}" label="@{commentType.desc}"
+										value="@{commentType.id}" />
+								</combobox>
+							</cell>
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right" />
+							<cell align="right">
+								<label value="Message :" />
+							</cell>
+							<cell colspan="3">
+								<textbox id="pass_message" width="300px"
+									height="50" multiline="true" maxlength="255" tabindex="10" />
+							</cell>
+							<cell align="right">
+								<label value="Comment :" />
+							</cell>
+							<cell colspan="3">
+								<textbox id="pass_comment" width="300px"
+									height="50" multiline="true" maxlength="255" tabindex="11" />
+							</cell>
+							<cell align="right" />
+							<cell align="right" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid>
+				<columns>
+						<column width="10%" />
+						<column width="15%" />
+						<column width="10%" />
+						<column width="15%" />
+						<column width="10%" />
+						<column width="15%" />
+						<column width="10%" />
+						<column width="15%" />
+					</columns>
+					<rows>
+						<row>
+							<cell align="right">
+								<label value="Fail Action : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+
+							<cell>
+								<combobox id="cbb_failaction"
+									model="@{criteria_addControl.actionFailList}"
+									value="@{criteria_addControl.tempCriteria.action.action_id}"
+									selectedItem="@{criteria_addControl.tempCriteria.action.action_id}"
+									readonly="true" tabindex="12">
+									<comboitem self="@{each=action}"
+										label="@{action.action_desc}" value="@{action.action_id}" />
+								</combobox>
+							</cell>
+
+							<cell align="right">
+								<label value="Message Type : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_fail_messagetype"
+									model="@{criteria_addControl.messageTypeList}" readonly="true"
+									tabindex="13">
+									<comboitem
+										self="@{each=messageType}" label="@{messageType.desc}"
+										value="@{messageType.id}" />
+								</combobox>
+							</cell>
+
+							<cell align="right">
+								<label value="Letter Code : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_fail_lettercode"
+									model="@{criteria_addControl.letterCodeList}"
+									value="@{criteria_addControl.tempCriteria.codeType.codeTypeID}"
+									selectedItem="@{criteria_addControl.tempCriteria.codeType.codeTypeID}"
+									readonly="true" tabindex="14">
+									<comboitem self="@{each=code}"
+										label="@{code.codeForDisplay}"
+										value="@{code.codeID}" />
+								</combobox>
+							</cell>
+
+							<cell align="right">
+								<label value="Comment Type : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell>
+								<combobox id="cbb_fail_commenttype"
+									model="@{criteria_addControl.commentTypeList}" readonly="true"
+									tabindex="15">
+									<comboitem
+										self="@{each=commentType}" label="@{commentType.desc}"
+										value="@{commentType.id}" />
+								</combobox>
+							</cell>
+							<cell align="right" />
+						</row>
+						<row>
+							<cell align="right" colspan="2">
+								<label value="Message :" />
+							</cell>
+							<cell colspan="3">
+								<textbox id="fail_message" width="300px"
+									height="50" multiline="true" maxlength="255" tabindex="16" />
+							</cell>
+							<cell align="right">
+								<label value="Comment :" />
+							</cell>
+							<cell colspan="3">
+								<textbox id="fail_comment" width="300px"
+									height="50" multiline="true" maxlength="255" tabindex="17" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid>
+					<rows>
+						<row>
+							<cell align="left" colspan="3">
+								<label value="Enhanced Criteria :" />
+							</cell>
+						</row>
+						<row>
+							<cell align="right">
+								<label value="Element : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell colspan="3">
+								<bandbox id="bbox_element_1"
+									mold="rounded" autodrop="true" readonly="true">
+									<bandpopup>
+										<listbox id="lbx_elements"
+											height="250px" width="300px" mold="paging" autopaging="true"
+											onSelect="bbox_element_1.value=self.selectedItem.label; bbox_element_1.close();">
+											<listhead>
+												<listheader label="ID"
+													width="100px" align="center" />
+												<listheader
+													label="Description" width="190px" align="center" />
+											</listhead>
+										</listbox>
+									</bandpopup>
+								</bandbox>
+							</cell>
+							<cell align="right">
+								<label value="Operator : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell colspan="3">
+								<combobox id="cbb_operator"
+									readonly="true" tabindex="19" />
+							</cell>
+
+							<cell align="right">
+								<label value="Operant : " />
+								<label value="*" sclass="required-field" />
+							</cell>
+							<cell colspan="2">
+								<radiogroup id="compare_value_grp" />
+								<radio id="rad_value" label="Value"
+									radiogroup="compare_value_grp" tabindex="20" />
+									<space />
+								<radio id="rad_element" label="Element"
+									radiogroup="compare_value_grp" tabindex="21" />
+							</cell>
+							<cell colspan="5">
+								<intbox id="ibx_enhancedvalue_integer" mold="rounded"
+									width="100px" maxlength="10" /> <space />
+								<textbox
+									id="tbx_enhancedvalue_character" width="100px" maxlength="10" /><separator />
+								<datebox id="dbx_enhancedvalue_date" mold="rounded"
+									cols="12" readonly="true" /> <space />
+								<bandbox id="bbox_element_2"
+									mold="rounded" autodrop="true" readonly="true">
+									<bandpopup>
+										<listbox
+											id="lbx_element_forvalue" height="250px" width="300px"
+											mold="paging" autopaging="true"
+											onSelect="bbox_element_2.value=self.selectedItem.label; bbox_element_2.close();">
+											<listhead>
+												<listheader label="ID"
+													width="100px" align="center" />
+												<listheader
+													label="Description" width="190px" align="center" />
+											</listhead>
+										</listbox>
+									</bandpopup>
+								</bandbox>
+							</cell>
+							<cell>
+								<button id="btn_addcriterion"
+									label="Add" image="/images/add.png" tabindex="22" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid>
+					<rows>
+						<row align="center">
+							<listbox id="criteriaList" width="650px"
+								height="200px" checkmark="true" multiple="true">
+								<listhead>
+									<listheader label="Element"
+										width="150px" align="center" />
+									<listheader label="Operator"
+										width="100px" align="center" />
+									<listheader label="Value"
+										width="400px" align="center" />
+								</listhead>
+							</listbox>
+						</row>
+						<row align="center">
+							<button id="btn_remove" label="Remove"
+								tabindex="23" image="/images/remove.png" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid>
+					<rows>
+						<row>
+							<cell align="left" colspan="3">
+								<label
+									value="Final Enhanced Criteria :" />
+							</cell>
+						</row>
+						<row>
+							<cell colspan="3" align="center">
+								<textbox id="tbx_final_criteria"
+									width="1050px" height="50" multiline="true" readonly="true" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid>
+					<rows>
+						<row>
+							
+						</row>
+					</rows>
+				</grid>
+			</div>
+			<hbox pack="right" width="100%">
+				<button id="btn_save_bottom"
+					image="/images/submit.png" width="96px" label="Submit" />
+				<button
+					onClick='Executions.getCurrent().sendRedirect("")'
+					image="/images/reset.png" width="96px" label="Reset" />
+				<button id="btn_cancel_bottom" label="Back"
+					image="/images/back.png" width="96px"
+					href="/layout/main.zul" />
+			</hbox>
+		</div>
+	</groupbox>
+	</window>
+
+</zk>
